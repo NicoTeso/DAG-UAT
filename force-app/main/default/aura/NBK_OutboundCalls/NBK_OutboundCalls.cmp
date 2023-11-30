@@ -1,0 +1,66 @@
+<aura:component controller="NBK_OutboundCalls_Controller" implements="flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="cmpTitle" type="String" />
+    <aura:attribute name="isVentaActiva" type="Boolean" default="false" />
+    <aura:attribute name="brandPhonesMap" type="Map" />
+    <aura:attribute name="brandPhoneSelected" type="String" default="" />
+    <aura:attribute name="customerPhonesMap" type="Map" />
+    <aura:attribute name="customerPhoneSelected" type="String" default="" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <lightning:card aura:id="outboundCallCard" class="{!v.isVentaActiva? 'slds-theme_shade': ''}" variant="Narrow" title="{!v.cmpTitle}" iconName="standard:voice_call">
+        <div>
+            <div>
+                <div class="slds-grid slds-gutters slds-m-around_x-small">
+                    <aura:if isTrue="{! not(v.isVentaActiva) }" >
+                        <div class="slds-col slds-size_1-of-2">
+                            <aura:if isTrue="{! empty(v.brandPhonesMap)}">
+                                <div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element">
+                                    <div class="test-id__field-label-container slds-form-element__label">
+                                        <span class="test-id__field-label">Teléfono Marca</span>
+                                    </div>
+                                    <div class="slds-form-element__control slds-grid itemBody">
+                                        <span class="test-id__field-value slds-form-element__static slds-grow " >{!v.brandPhoneSelected}</span>
+                                    </div>
+                                </div>
+                                <aura:set attribute="else">
+                                    <lightning:select name="brandPhoneSelector" label="Teléfono de marca:" value="{!v.brandPhoneSelected}">
+                                        <aura:iteration items="{!v.brandPhonesMap}" var="brandPhone" indexVar="key">
+                                            <option value="{!brandPhone.value}">{!brandPhone.key} - {!brandPhone.value}</option>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </aura:set>
+                            </aura:if>
+                        </div>
+                    </aura:if>
+                    <div class="{!v.isVentaActiva? 'slds-col': 'slds-col slds-size_1-of-2'}">
+                        <aura:if isTrue="{! empty(v.customerPhonesMap)}">
+                            <div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element">
+                                <div class="test-id__field-label-container slds-form-element__label">
+                                    <span class="test-id__field-label">Teléfono destinatario:</span>
+                                </div>
+                                <div class="slds-form-element__control slds-grid itemBody">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow " >{!v.customerPhoneSelected}</span>
+                                </div>
+                            </div>
+                            <aura:set attribute="else">
+                                <lightning:select name="brandPhoneSelector" label="Teléfono destinatario:" value="{!v.customerPhoneSelected}">
+                                    <aura:iteration items="{!v.customerPhonesMap}" var="customerPhone" indexVar="key">
+                                        <option value="{!customerPhone.value}">{!customerPhone.key} - {!customerPhone.value}</option>
+                                    </aura:iteration>
+                                </lightning:select>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </div>
+                <lightning:clickToDial class="slds-hide" aura:id="clickToDial" value="{!v.customerPhoneSelected}"  />
+            </div>
+        </div>
+        <div class="slds-align_absolute-center slds-m-around_large" >
+            <lightning:button label="Llamar" variant="brand" onclick="{! c.startOutboundCall }" />
+            <lightning:omniToolkitAPI aura:id="omniToolkit" />
+        </div>
+    </lightning:card>
+
+</aura:component>

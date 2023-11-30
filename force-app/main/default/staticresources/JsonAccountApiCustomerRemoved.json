@@ -1,0 +1,8 @@
+{
+"AccountAPI":
+   {
+    "eventType" : "CustomerRemoved",
+    "customerId" : "25",
+    "companyId" : "25"
+	}
+}

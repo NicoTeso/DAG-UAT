@@ -1,0 +1,51 @@
+.THIS {
+}
+.THIS .submitButton {
+      width: 95%;
+     margin-top: 5px;
+     margin-bottom: 15px;
+     display: inline-block;
+     vertical-align: middle;
+     padding: 10px 40px;
+     font-size: 16px;
+     border-radius: 2px;
+}
+.THIS .alignLink {
+        text-align: center;
+}
+.THIS .fuSpan {
+    padding-top:16px;
+}
+
+.THIS.mainText{
+    color:#ffffff !important;
+    font-size:12px;
+     
+}
+
+.THIS .whiteLink{
+    color:#ffffff !important;
+    text-decoration: underline;
+}
+.THIS .paragraph{
+    padding-bottom:20px;
+}
+.THIS .inline {
+    display: inline-block;
+}
+.THIS .submitButton {
+      width: 95%;
+     margin-top: 5px;
+     margin-bottom: 15px;
+     display: inline-block;
+     vertical-align: middle;
+     padding: 10px 40px;
+     font-size: 16px;
+     border-radius: 2px;
+}
+.THIS .toggleDiv{
+    display: flex;
+}
+.THIS .toggleButton{
+    margin:0 auto;
+}

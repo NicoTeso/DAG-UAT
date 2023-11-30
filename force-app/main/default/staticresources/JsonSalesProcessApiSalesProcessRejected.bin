@@ -1,0 +1,10 @@
+{
+	"eventType": "SalesProcessRejected",
+	"payload": {
+		"companyCode": "999",
+		"salesProcessId": "e3003610-1b52-4b0f-89b7-c8d4d96b350d",
+		"salesmanEmail": "foo@bar.com",
+		"rejectionDate": "2020-01-01T09:00:00Z",
+		"rejectionReasonCode": "1"
+	}
+}

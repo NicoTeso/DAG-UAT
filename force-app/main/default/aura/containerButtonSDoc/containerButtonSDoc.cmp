@@ -1,0 +1,21 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="LC_containerButtonSDocController" >
+	<aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="attachmentUrl" type="String"/>
+    <aura:attribute name = "show" type="Boolean" default="false"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div class="containerLayout">
+        <div class="slds-m-around_xxx-small">
+   		<lightning:button label="Enviar Propuesta" iconName="standard:text_template"  iconPosition="left" onclick="{! c.handleSend }" variant="brand"/>
+        </div>
+        <div class="slds-m-around_xxx-small">
+        	<aura:if isTrue="{!v.show}">
+            	<iframe style="border: 1px solid"  src="{!v.attachmentUrl}" type="application/pdf" width="600" height="450"/>
+             <aura:set attribute="else">
+                  <p>No se puede previsualizar el PDF.</p>
+             </aura:set>
+             </aura:if>
+        </div>
+                
+      </div>
+</aura:component>

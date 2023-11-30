@@ -1,0 +1,116 @@
+{
+ 	"eventType" : "WorkShopOrderVehicleDelivered",
+ 	"payload":{
+    	"companyCode": "999",
+    	"centerCode": "5",
+    	"workshopOrderId": "459D736E-1992-4C7F-B347-C574EA745FB8",
+    	"serviceAdviserEmail": "msuarez@aidacanarias.com",
+    	"workshopCode": "1",
+    	"creationDate": "2020-05-19T19:01:00.0000000Z",
+    	"receptionDate": "2020-05-19T19:01:00.0000000Z",
+    	"deliveryDate": "2020-05-19T19:01:00.0000000Z",
+    	"vin": "VIN02",
+    	"mileage": 152000,
+    	"customerDepositaryId": "c01",
+    	"customerId": "c01",
+    	"customerOwnerId": "c01",
+		"brand": "HONDA MOTO",
+		"model":"Tiguan",
+		"modelCode" : "AD13AX",
+		"version": "Full equip",
+		"engine": "Tiguan R-Line 1.5 TSI 96 kW (130CV) BMT ACT 6SG",
+		"modelYear": "2020",
+		"power": 130,
+		"engineCapacity": 1495,
+		"fuelCode": "1",
+		"transmission": "Manual",
+		"engineLetter": "DPB",
+		"engineNumber": "029659",
+		"engineCode": "DPB 029659",
+		"registrationPlate": "E4117LDB",
+        "registrationPlateDate": "2020-02-19T13:18:48.986Z",
+		"warrantyStartDate": "2019-12-10T09:30:00Z",
+		"warrantyEndDate": "2021-12-10T00:00:00Z",
+		"warrantyExtensionStartDate": "2021-12-10T00:00:00Z",
+		"warrantyExtensionEndDate": "2023-12-10T00:00:00Z",
+    	"services": [
+		{
+			"serviceType": "Mantenimiento",
+			"serviceTypeCode": "1",
+			"serviceOrigin": "Reclamación cliente",
+			"serviceOriginCode": "3",
+			"partGroups": [
+            {
+				"code": "15412",
+                "description": "15412"
+            },
+            {
+				"code": "15400",
+                "description": "15400"
+            },
+            {
+				"code": "8272",
+                "description": "8272"
+            },
+            {
+				"code": "17205",
+                "description": "17205"
+            },
+            {
+				"code": "17220",
+                "description": "17220"
+            },
+            {
+				"code": "98070",
+                "description": "98070"
+            },
+            {
+				"code": "80290",
+                "description": "80290"
+            },
+            {
+				"code": "31110",
+                "description": "31110"
+            }
+			]
+        },
+        {
+            "serviceType": "Campaña del Fabricante",
+			"serviceTypeCode": "2",
+            "serviceOrigin": "Reclamación cliente",
+			"serviceOriginCode": "3",
+            "partGroups": [
+            {
+                "code": "KCD",
+                "description": "Argolla De Remolque"
+            },
+            {
+                "code": "KIH",
+                "description": "Placas/ Letreros Indicadores"
+            }
+            ]
+        },
+        {
+			"serviceType": "Reparación",
+			"serviceTypeCode": "3",
+            "serviceOrigin": "Ampliación de Orden",
+			"serviceOriginCode": "4",
+            "partGroups": [
+            {
+                "code": "CCA",
+                "description": "Líquidos De Frenos"
+            }
+            ]
+        }
+		],
+    	"economicSummary": {
+        	"currencyType": "EUR",
+        	"customerAmount": 3000.00,
+        	"insuranceAmount": 50.00,
+        	"internalAmount": 10.00,
+        	"warrantyAmount": 20.00,
+        	"deferenceAmount": 5.50,
+        	"campaignAmount": 6.00
+		}
+	}
+}

@@ -1,0 +1,175 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="LC_vehicleCampaignsController" >
+    <aura:attribute name="item" type="Object" />
+    <aura:attribute name="show" type="Boolean" default="false" />
+    <aura:attribute name="isOpen" type="Boolean" default="false" />
+    <aura:attribute name = "isOpenCreateTask" type="Boolean"  default="false"/>
+    <aura:attribute name = "newTask" type="Task" default="{ 'sobjectType': 'Task' }" />
+    
+    
+    <aura:registerEvent name="cmpRefresh" type="c:refreshtimeLine"/>
+    
+    <lightning:layoutItem padding="around-small" size="2">
+    	<div class="slds-media__figure">
+        	<button class="slds-button slds-button_icon" name="botón" title="Ampliar Información" aria-controls="email-item-narrow" aria-expanded="true" onclick="{!c.showSection}">
+            	<section class="slds-clearfix">
+                	<div class="slds-float--left ">
+                    	<aura:if isTrue="{!v.show}">
+                        	<lightning:icon iconName="utility:dash" alternativeText="Información campaña" title="Información campaña"/>
+                        <aura:set attribute="else">
+                           	<lightning:icon iconName="standard:campaign_members" alternativeText="Información campaña" title="Información campaña" />
+                		</aura:set>
+                        </aura:if>
+  				    </div>
+               	</section>
+            </button>
+        </div>
+    </lightning:layoutItem>
+    <lightning:layoutItem padding="around-small" size="2">
+    		<lightning:formattedUrl value="{!v.item.Link}" label="{!v.item.Codigo}" target="_self" />
+    </lightning:layoutItem>
+    <lightning:layoutItem padding="around-small" size="2">
+    	<p>{!v.item.Tipo}</p>
+    </lightning:layoutItem>
+    <lightning:layoutItem padding="around-small" size="6">
+    	<p>{!v.item.Descripcion}</p>
+    </lightning:layoutItem>
+	<aura:if isTrue="{!v.show}">
+    	<lightning:layoutItem padding="around-small" size="12">
+    		<lightning:card  title="{!'Campaña ' + v.item.Codigo}" iconName="standard:campaign_members" class="containerCard">
+            	<aura:set attribute="actions">
+                	<lightning:button label="Tarea" onclick="{!c.creaTarea}"/>
+            		<lightning:button label="Asignar" onclick="{!c.autoAsignar}"/>
+                    <lightning:button label="Editar" onclick="{!c.editar}"/>
+        		</aura:set>
+                <div class="containerLayout">
+                	<lightning:layout multipleRows = "true">
+                    	<lightning:layoutItem padding="around-small" size="4">
+                        	<div class="header-column">
+                            	<p class="field-title" title="Aviso Llamada"><b>Aviso Llamada</b></p>
+                    			<p><ui:outputDate format="DD/MM/YYYY" value="{!v.item.fechaAvisoLlamada}"/></p>
+               				</div>
+                     	</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="4">
+                        	<div class="header-column">
+                            	<p class="field-title" title="última llamada"><b>Últ. Llamada</b></p>
+                    			<p><ui:outputDate format="DD/MM/YYYY" value="{!v.item.fechaLlamada}"/></p>
+               				</div>
+                    	</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="4">
+                        	<div class="header-column">
+                            	<p class="field-title" title="Intentos"><b>Intentos</b></p>
+                    			<p>{!v.item.intentos}</p>
+               				</div>
+                     	</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                         	<div class="header-column">
+                            	<p class="field-title" title="Aviso Email"><b>Aviso Email</b></p>
+                    			<p><ui:outputDate format="DD/MM/YYYY" value="{!v.item.fechaAvisoEmail}"/></p>
+               				</div>
+            			</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                        	<div class="header-column">
+                            	<p class="field-title" title="Enviado"><b>Enviado</b></p>
+                    			<p><ui:outputDate format="DD/MM/YYYY" value="{!v.item.fechaEmail}"/></p>
+               				</div>
+                      	</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                        	<div class="header-column">
+                            	<p class="field-title" title="Aviso SMS"><b>Aviso SMS</b></p>
+                    			<p><ui:outputDate format="DD/MM/YYYY" value="{!v.item.fechaAvisoSMS}"/></p>
+               				</div>
+                     	</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                        	<div class="header-column">
+                            	<p class="field-title" title="Enviado"><b>Enviado</b></p>
+                    			<p><ui:outputDate format="DD/MM/YYYY" value="{!v.item.fechaSMS}"/></p>
+               				</div>
+                       	</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                        	<div class="header-column">
+                            	<p class="field-title" title="Estado"><b>Estado</b></p>
+                    			<p>{!v.item.estado}</p>
+               				</div>
+                     	</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                                            	     <div class="header-column">
+                                            	        <p class="field-title" title="Asignado"><b>Asignado</b></p>
+                    									<p>{!v.item.asignado}</p>
+               										</div>
+                                    	        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="12">
+                        	<div class="header-column">
+                            	<p class="field-title" title="Comentario"><b>Comentario</b></p>
+                    			<p>{!v.item.comentario}</p>
+               				</div>
+                     	</lightning:layoutItem>
+                        
+                  </lightning:layout>
+                 </div>
+         	</lightning:card>
+                               
+    	</lightning:layoutItem>
+    </aura:if> 
+    <aura:if isTrue="{!v.isOpen}">
+    		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close" onclick="{! c.closeModel }" alternativeText="cerrar" variant="bare-inverse" class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Editar Servicio</h2>
+                    </header>
+                    <!--###### MODAL BOX BODY Part Start######-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:recordEditForm aura:id="editForm" recordId="{!v.item.Id}" objectApiName="Campania_Vehiculo__c" onsuccess="{!c.onRecordSuccess}" >
+        					<lightning:messages />
+        					<lightning:outputField fieldName="Name" />
+                            <lightning:inputField fieldName="Numero_de_llamadas__c" />
+                            <lightning:inputField fieldName="Orden_SIMA__c" />
+                            <lightning:inputField fieldName="Estado__c" />
+                            <lightning:inputField fieldName="Motivo_de_cierre__c" />
+							<lightning:inputField fieldName="Submotivo_de_cierre__c" />
+							<lightning:inputField fieldName="Comentario__c" />
+                            <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="actualizar" label="Actualizar" />
+    					</lightning:recordEditForm>
+                    </div>
+                </div>
+            </section>
+        </aura:if>
+    <aura:if isTrue="{!v.isOpenCreateTask}">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close" onclick="{! c.closeModelTask }" alternativeText="cerrar" variant="bare-inverse" class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Nueva Tarea</h2>
+                    </header>
+                    <!--###### MODAL BOX BODY Part Start######-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    	<lightning:layout multipleRows="true">
+                			<lightning:layoutItem  padding="around-small" size="6">
+        						<lightning:input label="Título" value="{!v.newTask.Subject}" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem  padding="around-small" size="6">
+                            	<lightning:input label="Comentarios" value="{!v.newTask.Description}" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem  padding="around-small" size="6">
+        						<lightning:input label="Fecha Actividad" type="date" value="{!v.newTask.ActivityDate}" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem  padding="around-small" size="6">
+        						<lightning:input label="Fecha Aviso" type="datetime" value="{!v.newTask.ReminderDateTime}" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem  padding="around-small" size="6">
+                            	<lightning:input label="Email" type="email" value="{!v.newTask.Email}" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem  padding="around-small" size="6">
+                            	<lightning:input label="Telefono" type="tel" value="{!v.newTask.Phone}" />
+                           	</lightning:layoutItem>
+                        </lightning:layout>
+                        <lightning:button class="slds-m-top_small" variant="brand" name="create" label="crear" onclick="{!c.handleCreateTask}" />
+    		        </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            
+        </aura:if>
+    
+        
+</aura:component>

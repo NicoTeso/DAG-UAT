@@ -1,0 +1,66 @@
+{
+	"eventType": "SalesProcessSaleCompleted",
+	"payload": {
+		"companyCode": "999",
+		"salesProcessId": "PACA078E-FA50-4DE1-ET2E-7D8588C9B7F7",
+		"salesmanEmail": "foo@bar.com",
+		"saleCompletedDate":  "2020-01-01T09:30:00Z",
+		"offers" : [{
+			"vehicle" : {
+				"vin" : "WVWZZZ6NZTY112309" ,
+				"modality" : "NewVehicle" ,
+				"brandCode" : "AUDI" ,
+				"modelCode" : "ABCDEF" ,
+				"modelYear" : "2020" ,
+				"extendedModelVersionKey" : "" ,
+                "modelGroup": "Tiguan",
+				"modelDescription" : "Tiguan R-Line 1.5 TSI 96 kW (130CV) BMT ACT 6SG",
+				"modelGroupCode" : "43646",
+				"fuelCode" : "1" ,
+				"power" : 150 ,
+				"engineCapacity" : 1500 ,
+				"colorCode" : "CO" ,
+                "colorDescription" : "Azul" ,
+				"interiorCode" : "IN" ,
+                "interiorDescription" : "Test" ,
+				"equipments" : [ 
+						{
+							"code": "001" , 
+							"description": "Cuero negro"
+						 }
+						],
+				"accessories" :[
+					 {
+					"code": "001" , 
+					"description": "Bola Remolque"
+					}
+					 ],
+				"services": [
+					{
+					"code": "1DS",
+					"description": "Matriculación",
+					"detailCodes": [
+						{
+						"code": "2AD",
+						"description": "Impuesto de matriculación"
+						}
+						]
+					}]
+			},		
+			"economicSummary" : {
+				"currencyType" : "EUR" ,
+				"price" : 20311.57 ,
+				"discount" : 711.57 ,
+				"total" : 20000.00
+			},
+			"financings" : [
+					{
+						"financialCompanyCode" : "A123456789" ,
+						"tariffCode" : "8PL" ,
+						"tariffDescription": "BBVA- Prima de riesgo",
+						"currencyType" : "EUR" ,
+						"amount" : 15000.00
+			}]
+		}]
+	}
+}

@@ -1,0 +1,16 @@
+.THIS .uiButton{
+    border-radius: 10px;
+    background-color: #252930;
+    color: white;
+    text-align: CENTER;
+    text-decoration: none;
+    font-size: 14px;
+    height:40px;
+}
+
+.THIS .mybutton{
+    background: #fad982 !important;
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+    text-align: center;
+}

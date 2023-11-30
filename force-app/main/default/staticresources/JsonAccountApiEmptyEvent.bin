@@ -1,0 +1,56 @@
+{
+"AccountAPI":
+   {
+    "eventType" : null,
+    "customerId" : "25",
+    "companyId" : "25",
+    "name" : null,
+    "firstName" : null,
+    "lastName" : null,
+    "tradeName" : null,
+    "pais" : null,
+    "tipoDocumento" : null,
+    "tipoDocumentoEmpresa": null,
+    "documento":null,
+    "isPersonAccount":true,
+    "salutation": null,
+    "billingAddressId" : null,
+    "billingAddress" : null,
+    "billingStreet" : null,
+    "billingCity" : null,
+    "billingState" : null,
+    "billingPostalCode" : null,
+    "billingCountryIso" : null,
+    "shippingAddressId" : null,
+    "shippingAddress" : null,
+    "shippingStreet" : null,
+    "shippingCity" : null,
+    "shippingState" : null,
+    "shippingPostalCode" : null,
+    "shippingCountryIso" : null,
+    "occupation" : null,
+    "childrenCount" : "2",
+    "personBirthdate" : null,
+    "gender" : "male",
+    "incomes" : "prueba", 
+    "position" : "director",
+    "maritalStatus": "soltero",
+    "economicSector": "economico",
+    "methodsOfContact":
+	   [],
+    "contact":
+	   [{"id": "1212",
+		"salutation": null,
+	    "firstName" : null,
+	    "lastName" : null,
+	    "title" : null,
+	    "department": null,
+	    "methodsOfContact" :
+	       [{"channel" : "Mobile",
+                "value" : "666666666",
+                "isDefault" : true,
+                "preferredContactTime" : "tardes"
+	       }]
+	   }]
+   }
+}

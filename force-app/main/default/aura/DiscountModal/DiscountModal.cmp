@@ -1,0 +1,54 @@
+<!--
+  @description       : 
+  @author            : Nubika <development@nubika.com>
+  @group             : 
+  @last modified on  : 04-20-2023
+  @last modified by  : Nubika <development@nubika.com>
+-->
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"  >
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="CodigoPromocion" type="String" />
+    <aura:attribute name="TipoCanjeo" type="String" />
+    <aura:attribute name="GoogleAPI" type="String" />
+    <aura:attribute name="email" type="String" />
+    
+    <aura:attribute access="private" name="error" type="String" default=""/>
+    
+    <div class="slds-align_absolute-center">
+        <aura:if isTrue="{!v.TipoCanjeo == 'Código Promoción'}">
+        <!--<label class="slds-form-element__label" for="CP" id="inline-text-label">Código Promoción</label>-->
+            <ui:outputText aura:id="CP" value="{!v.CodigoPromocion}"/>
+        </aura:if> 
+        
+        <aura:if isTrue="{!v.TipoCanjeo == 'Presentación Física'}">
+          <!--  <label class="slds-form-element__label" for="PF" id="inline-text-label">Comentarios</label>-->
+            <ui:outputText aura:id="PF" value="{!v.CodigoPromocion}"/>
+        </aura:if> 
+        
+        <aura:if isTrue="{!v.TipoCanjeo == 'Código QR'}">
+         <!--   <label class="slds-form-element__label" for="QR" id="inline-text-label">Código QR</label>-->
+            <aura:if isTrue="{!v.CodigoPromocion == undefined}">
+            	<ui:outputText aura:id="PF" value="No hay Códigos QR disponibles"/>
+                <aura:set attribute="else">
+                    <img src="{!v.GoogleAPI + v.CodigoPromocion}"/>
+                </aura:set>
+            </aura:if>
+        </aura:if> 
+
+        <aura:if isTrue="{!v.TipoCanjeo == 'Envío Email'}">
+          <!--  <label class="slds-form-element__label" for="PF" id="inline-text-label">Comentarios</label>-->
+            <ui:outputText aura:id="EM" value="Debes mandar un correo electrónico a: "/>&nbsp;<a href="{!v.CodigoPromocion}">{!v.email}</a>
+        </aura:if> 
+        
+    </div>
+   <div class="slds-p-bottom_large slds-p-left_large slds-align_absolute-center" style="width:70px; height:100px">
+      
+        <aura:if isTrue="{! !empty(v.error)}">
+            <ui:message title="Error" severity="error" closable="true">{!v.error}</ui:message>
+        </aura:if>
+        
+        <!--<lightning:button aura:id="submit" type="submit" label="Avail Discount" class="slds-m-top_medium" />-->
+        <lightning:button aura:id="cancel" onclick="{!c.handleCancel}" label="Aceptar" />
+        
+    </div>  
+</aura:component>

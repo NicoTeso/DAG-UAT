@@ -1,0 +1,207 @@
+<aura:component
+  controller="CreateUser"
+  implements="forceCommunity:availableForAllPageTypes"
+>
+  <aura:attribute name="Hide" type="Boolean" default="false" />
+  <aura:attribute name="aprovalProcces" type="Boolean" default="false" />
+  <aura:attribute name="noClientePropio" type="Boolean" default="false" />
+  <aura:attribute name="notAprovalProcces" type="Boolean" default="false" />
+  <aura:attribute name="toggleChecked" type="Boolean" default="true" />
+  <aura:attribute name="centralizarChecked" type="Boolean" default="false" />
+  <aura:attribute name="oppositionChecked" type="Boolean" default="false" />
+  <aura:attribute name="antiDobleCheck" type="Boolean" default="false" />
+  <aura:attribute name="acceptedCheck" type="Boolean" default="false" />
+  <aura:attribute name="buttonDisabled" type="Boolean" default="false" />
+  <aura:attribute name="screen" type="String" default="1" />
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <div class="mainText">
+    <aura:if isTrue="{!v.aprovalProcces}">
+      <aura:if isTrue="{!v.screen == '1'}">
+        <div class="mainText">
+          <div class="paragraph">
+            Al darte de alta centralizaremos tus datos en Domingo Alonso Group
+            para tu comodidad y podremos mostrarle todo en myDAG.
+          </div>
+          <div class="paragraph">
+            <a class="whiteLink" href="./politica-de-privacidad">Pincha aquí</a> para
+            saber más sobre la centralización de tus datos por interés legítimo
+            y tu derecho de oposición.
+          </div>
+          <div class="paragraph">
+            TUS DATOS SERÁN CENTRALIZADOS (desmarca la opción para oponerte).
+          </div>
+          <div class="toggleDiv">
+            <lightning:input
+              class="toggleButton"
+              type="toggle"
+              value="true"
+              aura:id="toggleButton"
+              checked="{!v.toggleChecked}"
+            />
+          </div>
+          <br />
+          <div class="submitButton">
+            <aura:if isTrue="{!v.toggleChecked}">
+              <ui:button
+                label="Actualizar"
+                class="slds-button slds-button_brand slds-button_stretch"
+                press="{!c.updateFU}"
+              />
+              <aura:set attribute="else">
+                <ui:button
+                  label="Siguiente"
+                  class="slds-button slds-button_brand slds-button_stretch"
+                  press="{!c.nextStepUser}"
+                />
+              </aura:set>
+            </aura:if>
+          </div>
+        </div>
+      </aura:if>
+      <aura:if isTrue="{!v.screen == '2'}">
+        <div class="mainText">
+          <div class="paragraph">
+            Quiero oponerme a la centralización de mis datos de cliente.
+            <ul>
+              <li>* Utilizar el chat para tus dudas</li>
+              <li>* Consultar tus datos personales y del vehículo</li>
+              <li>* Consultar toda la información de tus pases de taller</li>
+              <li>
+                * Disfrutar del Club de fidelización con sus descuentos de DAG y
+                Partners
+              </li>
+            </ul>
+          </div>
+          <div class="paragraph">
+            <lightning:input
+              class="inline"
+              type="checkbox"
+              aura:id="centralizarCheck"
+              checked="{!v.centralizarChecked}"
+              name="input1"
+              variant="label-hidden"
+              onchange="{!c.changeCentralizarCheck}"
+            />Centralizar mis datos para disfrutar de myDAG
+          </div>
+          <div class="paragraph">
+            <lightning:input
+              class="inline"
+              type="checkbox"
+              label="Basic option"
+              checked="{!v.oppositionChecked}"
+              variant="label-hidden"
+              name="confirmCheck"
+              onchange="{!c.changeOppositionCheck}"
+            />
+            Confirmar mi oposición
+          </div>
+          <br />
+          <aura:if isTrue="{!v.buttonDisabled}">
+            <div class="submitButton">
+              <aura:if isTrue="{!v.toggleChecked}">
+                <ui:button
+                  label="Actualizar"
+                  class="slds-button slds-button_brand slds-button_stretch"
+                  press="{!c.updateFU}"
+                />
+                <aura:set attribute="else">
+                  <ui:button
+                    label="Siguiente"
+                    class="slds-button slds-button_brand slds-button_stretch"
+                    press="{!c.updateFU}"
+                  />
+                </aura:set>
+              </aura:if>
+            </div>
+          </aura:if>
+          <div style="color: #ff9e9e">
+            <ui:outputText value="{!v.output}" />
+          </div>
+        </div>
+      </aura:if>
+      <aura:if isTrue="{!v.screen == '3'}">
+        <div class="mainText">
+          <div class="paragraph">
+            <p>Lamentamos que no quieras disfrutar de tus ventajas</p>
+          </div>
+          <div class="paragraph">
+            Esperamos verte pronto.
+            <p>
+              <a class="whiteLink" href="{!v.cerrarUrl}">Pincha aquí</a> para
+              saber más sobre la centralización de tus datos por interés
+              legítimo y tu derecho de oposición.Pincha aquí para cerrar
+            </p>
+          </div>
+          <br />
+        </div>
+      </aura:if>
+      <aura:if isTrue="{!v.screen == '4'}">
+        <div class="mainText">
+          <div class="paragraph">
+            Hola estamos muy contentos de que formes parte de nuestra familia.
+          </div>
+          <div class="paragraph">
+            Esperamos que disfrutes de tu APP de cliente.
+            <p>
+              <a class="whiteLink" href="./login">Pincha aquí</a> para acceder
+              a la APP de myDAG.
+            </p>
+          </div>
+          <br />
+        </div>
+      </aura:if>
+    </aura:if>
+    <aura:if isTrue="{!v.notAprovalProcces}">
+      <aura:if isTrue="{!not(v.Hide==true)}">
+        <span
+          >Te has opuesto a la centralización de tus datos por lo que no podrás
+          disfrutar de las ventajas de tu APP cliente."</span
+        >
+        <br />
+        <span
+          >Para disfrutar de nuestras ventajas debes aceptar la centralización
+          de tus datos.</span
+        >
+        <br />
+        <div class="alignLink fuSpan">
+          <lightning:input
+            class="inline mainText"
+            type="checkbox"
+            aura:id="PoliticaPriv"
+            value="false"
+            checked="{!v.toggleChecked}"
+          />
+          <span>Acepto ahora la centralización de mis datos</span>
+        </div>
+        <div class="submitButton">
+          <ui:button
+            label="Siguiente"
+            class="slds-button slds-button_brand slds-button_stretch"
+            press="{!c.echo}"
+          />
+        </div>
+        <div class="slds-align_absolute-center">
+          <div style="font-size: 12px; text-align: left">
+            <ui:outputText
+              value="Quiero saber más sobre la centralización de mis datos por interés legítimo."
+            />
+          </div>
+        </div>
+      </aura:if>
+      <aura:if isTrue="{!v.Hide}">
+          <span>Lamentamos que nos quiera disfrutar de tus ventajas</span>
+          <br />
+          <span>Esperamos verle pronto</span>
+      </aura:if>
+    </aura:if>
+    <aura:if isTrue="{!v.noClientePropio}">
+      <span 
+        >Le informamos de que no puede hacer uso de esta aplicación al no ser
+        cliente de Domingo Alonso Group.
+      </span>
+      <div class="slds-align_absolute-center">
+        <a class="whiteLink" style="text-align: center;padding-top: 8px;" href="./login">Volver</a> 
+      </div>
+    </aura:if>
+  </div>
+</aura:component>

@@ -1,0 +1,256 @@
+<!--
+  @description  : 
+  @author       : development@nubika.com 
+-->
+<aura:component
+  controller="CreateUser"
+  implements="forceCommunity:availableForAllPageTypes"
+>
+  <aura:attribute name="firstName" type="String" default="10" />
+  <aura:attribute name="output" type="String" />
+  <aura:attribute name="screen" type="String" default="1" />
+  <aura:attribute name="checkOppositionStatus" type="String" default="0" />
+  <aura:attribute name="idConsentimiento" type="String" default="" />
+  <aura:attribute name="NIF" type="Boolean" default="false"/>
+  <aura:attribute name="accountNIF" type="String" />
+  <aura:attribute name="userName" type="String" />
+  <aura:attribute name="contactId" type="String" />
+  <aura:attribute name="toggleChecked" type="Boolean" default="true" />
+  <aura:attribute name="buttonDisabled" type="Boolean" default="false" />
+  <aura:attribute name="oppositionChecked" type="Boolean" default="false" />
+  <aura:attribute name="centralizarChecked" type="Boolean" default="false" />
+  <aura:attribute name="acceptedCheck" type="Boolean" default="false" />
+  <aura:attribute name="pPrivacidadURL" type="String" />
+  <aura:attribute name="avisoLegal" type="String" />
+  <aura:attribute name="loginURL" type="String" />
+  <aura:attribute name="cerrarUrl" type="String" />
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <div>
+    <c:logger aura:id="logger"/>
+    <aura:if isTrue="{!v.screen == '1'}">
+      <aura:if isTrue="{!not(or(or(v.output == 1,v.output == 2),v.output == 3))}">
+        <div style="width: 80%; margin: auto; color: white">
+          <h2 class="header">
+            {!$Label.c.register_UseYourData}
+          </h2>
+          <br />
+          <div style="width: 95%; padding: 0px 30px">
+            <h2 class="header">{!$Label.c.register_DNI}</h2>
+          </div>
+          <div style="color: black; width: 95%; padding: 0px 30px">
+            <lightning:input
+              aura:id="Account"
+              value="{!v.accountNIF}"
+              name="Account"
+            />
+          </div>
+          <br />
+          <div>
+            <div style="color: white; margin: center; padding: 0px 30px">
+              <ui:outputText value="{!$Label.c.register_AppInstallConsent}" />
+            </div>
+          </div>
+          <div>
+            <div>
+              <div
+                style="
+                  color: white;
+                  margin: center;
+                  width: 98%;
+                  padding: 0px 30px;
+                "
+              >
+                <u
+                  ><a href="{!v.avisoLegal}" style="color: white"
+                    >{!$Label.c.register_TermsAndConditions}</a
+                  ></u
+                >
+                <br />
+                <u
+                  ><a style="color: white" href="{!v.pPrivacidadURL}"
+                    >{!$Label.c.register_Privacy}</a
+                  ></u
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="submitButton">
+            <ui:button
+              label="Siguiente"
+              class="slds-button slds-button_brand slds-button_stretch"
+              press="{!c.checkNifAccount}"
+            />
+          </div>
+        </div>
+      </aura:if>
+      <div style="width: 80%; margin: auto">
+        <aura:if isTrue="{!v.NIF}">
+          <div style="color: #ff9e9e">
+            <ui:outputText value="{!$Label.c.register_IntroduceDNI}" />
+          </div>
+        </aura:if>
+
+        <aura:if isTrue="{!v.acceptedCheck}">
+          <div style="color: #ff9e9e">
+            <ui:outputText
+              value="{!$Label.c.register_AceptPrivacyPolicy}"
+            />
+          </div>
+        </aura:if>
+        <div style="color: #ff9e9e">
+          <ui:outputText value="{!v.output}" />
+        </div>
+      </div>
+    </aura:if>
+    <aura:if isTrue="{!v.screen == '6'}">
+      <div class="mainText">
+        <div class="paragraph">
+          <span
+          >{!$Label.c.register_NotClient}
+        </span>
+        <br />
+        <p style="text-align: center;padding-top: 8px;">
+          <a class="whiteLink" href="{!v.loginURL}">{!$Label.c.register_Back}</a> 
+        </p>
+        </div>
+      </div>
+    </aura:if>
+    <aura:if isTrue="{!v.screen == '2'}">
+      <div class="mainText">
+        <div class="paragraph">
+          {!$Label.c.register_CentralizeDataWarning}
+        </div>
+        <div class="paragraph">
+          <a class="whiteLink" href="{!v.pPrivacidadURL}">{!$Label.c.register_ClickHere}</a>&nbsp;{!$Label.c.register_KnowMore}
+        </div>
+        <div class="paragraph">
+          {!$Label.c.register_ConfirmCentralizeData}
+        </div>
+        <div class="toggleDiv">
+          <lightning:input
+            class="toggleButton"
+            type="toggle"
+            value="true"
+            aura:id="toggleButton"
+            onchange="{!c.showCreateUserButton}"
+            checked="{!v.toggleChecked}"
+          />
+        </div>
+
+        <br />
+        <div class="submitButton">
+          <aura:if isTrue="{!v.toggleChecked}">
+            <ui:button
+              label="Crear usuario"
+              class="slds-button slds-button_brand slds-button_stretch"
+              press="{!c.registerUserHandler}"
+            />
+            <aura:set attribute="else">
+              <ui:button
+                label="Siguiente"
+                class="slds-button slds-button_brand slds-button_stretch"
+                press="{!c.nextStepUser}"
+              />
+            </aura:set>
+          </aura:if>
+        </div>
+        <div style="color: #ff9e9e">
+          <ui:outputText value="{!v.output}" />
+        </div>
+      </div>
+    </aura:if>
+    <aura:if isTrue="{!v.screen == '3'}">
+      <div class="mainText">
+        <div class="paragraph">
+          {!$Label.c.register_RefuseCentralizeData}
+          <ul>
+            <li>{!$Label.c.register_UseChatQuestions}</li>
+            <li>{!$Label.c.register_PersonalData}</li>
+            <li>{!$Label.c.register_WorkshopData}</li>
+            <li>
+              {!$Label.c.register_FidelityClub}
+            </li>
+          </ul>
+        </div>
+        <div class="paragraph">
+          <lightning:input
+            class="inline"
+            type="checkbox"
+            aura:id="centralizarCheck"
+            checked="{!v.centralizarChecked}"
+            name="input1"
+            variant="label-hidden"
+            onchange="{!c.changeCentralizarCheck}"
+          /> {!$Label.c.register_CentralizeDataConfirmation}
+        </div>
+        <div class="paragraph">
+          <lightning:input
+            class="inline"
+            type="checkbox"
+            label="Basic option"
+            checked="{!v.oppositionChecked}"
+            variant="label-hidden"
+            name="confirmCheck"
+            onchange="{!c.changeOppositionCheck}"
+          />
+          {!$Label.c.register_ConfirmPosition}
+        </div>
+        <br />
+        <aura:if isTrue="{!v.buttonDisabled}">
+          <div class="submitButton">
+            <aura:if isTrue="{!v.toggleChecked}">
+              <ui:button
+                label="Crear usuario"
+                class="slds-button slds-button_brand slds-button_stretch"
+                press="{!c.createUser}"
+              />
+              <aura:set attribute="else">
+                <ui:button
+                  label="Siguiente"
+                  class="slds-button slds-button_brand slds-button_stretch"
+                  press="{!c.nextStepUser}"
+                />
+              </aura:set>
+            </aura:if>
+          </div>
+        </aura:if>
+        <div style="color: #ff9e9e">
+          <ui:outputText value="{!v.output}" />
+        </div>
+      </div>
+    </aura:if>
+    <aura:if isTrue="{!v.screen == '4'}">
+      <div class="mainText">
+        <div class="paragraph">
+          <p>{!$Label.c.register_Hello} <ui:outputText value="{!v.userName}" /></p>
+          {!$Label.c.register_HappyFamily}
+        </div>
+        <div class="paragraph">
+          <p>{!$Label.c.register_WelcomeMailSent}</p>
+        </div>
+        <div class="paragraph">
+          <p>
+            <a class="whiteLink" href="{!v.loginURL}">{!$Label.c.register_ClickHere}</a>&nbsp;{!$Label.c.register_ToAccess}
+          </p>
+        </div>
+        <br />
+      </div>
+    </aura:if>
+    <aura:if isTrue="{!v.screen == '5'}">
+      <div class="mainText">
+        <div class="paragraph">
+          <p>{!$Label.c.register_SorryNotAdvantages}</p>
+        </div>
+        <div class="paragraph">
+          {!$Label.c.register_HopeSeeYouSoon}
+          <p>
+            <a class="whiteLink" href="{!v.cerrarUrl}">{!$Label.c.register_ClickHere}</a>&nbsp;{!$Label.c.register_KnowYourRights}
+          </p>
+        </div>
+        <br />
+      </div>
+    </aura:if>
+  </div>
+</aura:component>

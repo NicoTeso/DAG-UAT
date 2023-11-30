@@ -1,0 +1,114 @@
+<!-- add implements="forceCommunity:availableForAllPageTypes" to surface the component in community builder -->
+<aura:component controller="NBK_LoginUserController" implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="showError" type="Boolean" required="true" description="" default="false" access="private"/>
+    <aura:attribute name="errorMessage" type="String" required="false" description="" access="private"/>
+    <aura:attribute name="startUrl" type="String" required="false" description="The url you go to after a successful login" />
+    <aura:attribute name="usernameLabel" type="String" required="false" default="DNI"/>
+    <aura:attribute name="passwordLabel" type="String" required="false" default="Contraseña"/>
+    <aura:attribute name="loginButtonLabel" type="String" required="false" default="Entrar"/>
+    <aura:attribute name="expid" type="String" required="false" description="The branding experience ID" />        
+    
+    <aura:attribute name="forgotPasswordLabel" type="String" required="false" default="Resetear contraseña"/>
+    <aura:attribute name="selfRegisterLabel" type="String" required="false" default="Darme de alta"/>
+    <aura:attribute name="forgotPasswordUrl" type="String" required="false" default="/ForgotPassword"/>
+    <aura:attribute name="selfRegisterUrl" type="String" required="false" default="/SelfRegister"/>
+    
+    <aura:attribute name="isUsernamePasswordEnabled" type="Boolean" access="private"/>
+    <aura:attribute name="isSelfRegistrationEnabled" type="Boolean" access="private"/>
+    <aura:attribute name="communityForgotPasswordUrl" type="String" access="private"/>
+    <aura:attribute name="communitySelfRegisterUrl" type="String" access="private"/>
+    <aura:attribute name="screen" type="String" default="1" description="Values: '1','2'"/>
+    <aura:attribute name="centralizarChecked" type="Boolean" default="false" />
+    <aura:attribute name="loginURL" type="String" />
+    <aura:attribute name="username" type="String" />
+    <aura:attribute name="password" type="String" />
+    
+    <aura:registerevent name="sitePropagatedStartUrl" type="c:setStartUrl"/>
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}"/>
+    <aura:dependency resource="c:setStartUrl" type="EVENT"/>
+    <!-- Please uncomment
+    <aura:dependency resource="siteforce:registerQueryEventMap" type="EVENT"/>
+    -->
+    <aura:handler event="c:setStartUrl" action="{!c.setStartUrl}"/>
+    <aura:handler event="c:setExpId" action="{!c.setExpId}"/>    
+    <aura:dependency resource="c:setExpId" type="EVENT"/>  
+    
+    <div>
+        <aura:renderIf isTrue="{!v.isUsernamePasswordEnabled}">
+            <span>
+                <aura:renderIf isTrue="{!v.showError}">
+                    <div id="error">
+                        <ui:outputRichText value="{!v.errorMessage}"/>
+                    </div>
+                </aura:renderIf>
+            </span>
+            <c:logger aura:id="logger"/>
+            <aura:if isTrue="{!v.screen == '1'}">
+                <div>
+                    <div id="sfdc_username_container" class="sfdc">
+                        <lightning:icon iconName="utility:user" size="xx-small" alternativeText="Icono de Usuario" class="sfdc_icon"/>
+                        <ui:inputText value="{!v.username}" aura:id="username" placeholder="{!v.usernameLabel}" keyup="{!c.onKeyUp}" class="input sfdc_usernameinput sfdc" label="{!v.usernameLabel}" labelClass="assistiveText"/>
+                    </div>
+            
+                    <div id="sfdc_password_container" class="sfdc">
+                        <lightning:icon iconName="utility:lock" size="xx-small" alternativeText="Icono de Candado" class="sfdc_icon"/>
+                        <ui:inputSecret value="{!v.password}" aura:id="password" placeholder="{!v.passwordLabel}" keyup="{!c.onKeyUp}" class="input sfdc_passwordinput sfdc" label="{!v.passwordLabel}" labelClass="assistiveText"/>
+                    </div>
+            
+                    <div class="sfdc_loginbutton">
+                        <ui:button aura:id="submitButton" label="{!v.loginButtonLabel}" press="{!c.handleLogin}" class="sfdc_button"/>
+                    </div>
+                    
+                    <div id="sfdc_forgot">
+                        <span><a href="{!if(v.communityForgotPasswordUrl == null, v.forgotPasswordUrl, v.communityForgotPasswordUrl)}">{!v.forgotPasswordLabel}</a></span>
+                        <aura:renderIf isTrue="{!v.isSelfRegistrationEnabled}">
+                            <span style="float:right" ><a href="{!if(v.communitySelfRegisterUrl == null, v.selfRegisterUrl, v.communitySelfRegisterUrl)}">{!v.selfRegisterLabel}</a></span>
+                        </aura:renderIf>
+                    </div>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!v.screen == '2'}">
+                <div style="color: white">
+                    <div>
+                        {!$Label.c.oposicionFUText1}
+                    </div>
+                    <div>
+                        {!$Label.c.oposicionFUText2}
+                    </div>
+                    <div class="sfdc" style="width: 85%; margin: 0 auto; margin-top: 20px;">
+                        <label>
+                            <lightning:input
+                                class="inline"
+                                type="checkbox"
+                                name="optionGroup"
+                                aura:id="centralizarCheck"
+                                checked="{!v.centralizarChecked}"
+                                onchange="{!c.changeCentralizarCheck}"
+                            />
+                            {!$Label.c.acceptFU}
+                        </label>
+                    </div>
+                    <div class="sfdc" style="width: 60%; margin: 0 auto; margin-top: 20px;">
+                        <ui:button label="Siguiente" press="{!c.handleNext}" class="sfdc_button"/>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        {!$Label.c.oposicionFUText3}
+                    </div>
+                </div>
+            </aura:if>
+            <aura:if isTrue="{!v.screen == '3'}">
+                <div style="color: white">
+                    <div>
+                        <p>{!$Label.c.register_SorryNotAdvantages}</p>
+                    </div>
+                    <div>
+                        {!$Label.c.register_HopeSeeYouSoon}
+                    </div>
+                    <div class="sfdc" style="width: 60%; margin: 0 auto; margin-top: 20px;">
+                        <ui:button label="Inicio" press="{!c.handleInicioButton}" class="sfdc_button"/>
+                    </div>
+                </div>
+            </aura:if>
+        </aura:renderIf>
+    </div>
+</aura:component>

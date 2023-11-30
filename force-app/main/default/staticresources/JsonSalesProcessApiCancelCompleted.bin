@@ -1,0 +1,8 @@
+{
+	"eventType" : "SalesProcessVehicleDeliveryCancelled",
+	"payload": {
+		"companyCode": "999",
+		"salesProcessId": "PACA078E-FA50-4DE1-ET2E-7D8588C9B7F7",
+		"vin": "2GNALCEK4E6273763"
+	}
+}

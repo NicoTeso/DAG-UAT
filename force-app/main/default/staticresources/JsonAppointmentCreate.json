@@ -1,0 +1,23 @@
+{
+	"payload": {
+		"workshopOrderId": "F33CDCA8-0EC1-4431-AD4F-F478E25946E1",
+		"workshopCode": "1",
+		"vin": null,
+		"serviceAdviserPhone": "633213459",
+		"serviceAdviserName": "antonio fernandez",
+		"serviceAdviserEmail": "ruiz4@hatobito.com",
+		"registrationPlate": "4943LLI",
+		"receptionDate": null,
+		"deliveryDate": null,
+		"customerOwnerId": "c01",
+		"customerId": "c01",
+		"customerDepositaryId": "c01",
+		"creationDate": null,
+		"companyCode": "999",
+		"centerCode": "5",
+		"cancelDate": null,
+		"appointmentId": "12346-128",
+		"appointmentDate": "2022-07-01T10:13:34.66Z"
+	},
+	"eventType": "AppointmentCreate"
+}

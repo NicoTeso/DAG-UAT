@@ -1,0 +1,17 @@
+<aura:component>
+	
+    <aura:attribute name="itemDetail" type="ActivityServiceTimeLineModel"/>
+    <aura:if isTrue="{!v.itemDetail.tiempo == 'Now'}">
+            <c:timeLineServiceItem_Now itemDetail="{!v.itemDetail}" />
+    </aura:if>
+    <aura:if isTrue="{!v.itemDetail.tiempo == 'Before'}">
+            <c:timeLineServiceItem_Before itemDetail="{!v.itemDetail}" />
+        </aura:if>
+    <aura:if isTrue="{!v.itemDetail.tiempo == 'After'}">
+            <c:timeLineServiceItem_After itemDetail="{!v.itemDetail}" show1 ="{!v.itemDetail.categoria}" show2 ="{!v.itemDetail.vencido}" />
+    </aura:if>
+    <aura:if isTrue="{!v.itemDetail.tiempo == 'LastPT'}">
+            <c:timeLineServiceItem_LastPaseTaller itemDetail="{!v.itemDetail}" />
+    </aura:if>
+    
+</aura:component>

@@ -1,0 +1,66 @@
+<aura:component implements="force:appHostable,lightning:isUrlAddressable" access="global" controller="LC_ServicesCustomePageController">
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="mismoAccount" type="Boolean" />
+    <lightning:workspaceAPI aura:id="workspace" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-grid slds-wrap">
+        <aura:if isTrue="{!v.recordId != null}">
+        <div class="slds-col slds-size_12-of-12">
+            <div class="slds-m-around_x-small">
+                <c:highlightsCustom recordId="{!v.recordId}" objeto="Vehiculo" />
+            </div>
+        </div>
+       	<div class="slds-col slds-size_2-of-3">
+            <div class="slds-grid slds-wrap">
+      			<div class="slds-col slds-size_1-of-2">
+                    <aura:if isTrue="{!v.mismoAccount}">
+                    	<div class="slds-m-around_x-small">
+                    	    <c:showPersonVehicle recordId = "{!v.recordId}" title="Propietario/Depositario"/>
+                    	</div>
+                    <aura:set attribute="else">
+                        <div class="slds-m-around_x-small">
+        	    			<c:showPersonVehicle recordId = "{!v.recordId}" title="Propietario"/>
+        		    	</div>
+                    	<div class="slds-m-around_x-small">
+                			<c:showPersonVehicle recordId = "{!v.recordId}" title="Depositario"/>
+            			</div>
+        	    	</aura:set>
+                    </aura:if>
+        		</div>
+        		<div class="slds-col slds-size_1-of-2">
+            		<div class="slds-m-around_x-small">
+                		<c:VehicleGuarantee recordId ="{!v.recordId}"/>
+            		</div>
+           			<div class="slds-m-around_x-small">
+                		<c:VehicleMaintenanceContract recordId="{!v.recordId}" />
+            		</div>
+        		</div>
+                <div class="slds-col slds-size_12-of-12">
+            		<div class="slds-m-around_x-small">
+                		<c:VehicleCampaigns recordId="{!v.recordId}"/>
+            		</div>
+        		</div>
+                <div class="slds-col slds-size_12-of-12">
+            		<div class="slds-m-around_x-small">
+                		<c:targetCLosed recordId="{!v.recordId}"/>
+            		</div>
+        		</div>
+                <div class="slds-col slds-size_12-of-12">
+            		<div class="slds-m-around_x-small">
+                		<c:vehicleCampaignClosed recordId="{!v.recordId}"/>
+            		</div>
+        		</div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-m-around_x-small">
+				<c:NBK_OutboundCalls recordId = "{!v.recordId}" cmpTitle="Acción de llamada" isVentaActiva="true"/>
+			</div>
+            <div class="slds-m-around_x-small">
+            		<c:timeLineService recordId="{!v.recordId}"/>
+            </div>
+        </div>
+        
+      </aura:if>
+    </div>
+</aura:component>

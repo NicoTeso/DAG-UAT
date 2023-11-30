@@ -1,0 +1,88 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable" access="global"  controller="VehicleController">
+	 
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name ="record" type="Object" />
+    <aura:attribute name="recordError" type="String" />
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="dataCompradores" type="Object"/>
+    <aura:attribute name="dataPropietarios" type="Object"/>
+    <aura:attribute name="dataDepositarios" type="Object"/>
+    <aura:attribute name="mouseHoverData" type="List" />
+    <!--<aura:attribute name="dataTotal" type="List" />-->
+    <aura:attribute name ="responseInitial" type="Object" />
+    <aura:attribute name="reId" type="Id" />
+    <aura:attribute name="mostrarComprador" type="Boolean" />
+    <aura:attribute name="mostrarPropietario" type="Boolean" />
+    <aura:attribute name="mostrarDepositario" type="Boolean" />
+    <aura:attribute name="togglehover" type="boolean" default="false"/>
+    <aura:attribute name="hoverRow" type="Integer" default="-1" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    
+     <lightning:card class="slds-text-heading_small" variant="Narrow" title="Comprador y Propietario de vehículos" iconName="custom:custom31" >
+        <lightning:accordion aura:id="accordion" activeSectionName="A">
+        	<lightning:accordionSection name="Propietario" label="Propietario">
+         		<aura:if isTrue="{!v.mostrarPropietario}">
+        			<p class="slds-p-horizontal_small">
+           				<lightning:datatable
+            			columns="{!v.columns}"
+            			data="{!v.dataPropietarios}"
+            			keyField="Id"
+            			hideCheckboxColumn="true"
+            			/>
+        			</p>
+                    <div class="slds-align_absolute-center">
+                    <lightning:button  variant="brand"  label="Más datos" onclick="{! c.loadMoreDataPropietarios }"/>
+                </div>
+                <aura:set attribute="else">
+      				<p class="slds-p-horizontal_small">
+            			No hay datos que mostrar.
+        			</p>
+    			</aura:set>
+         		</aura:if>
+            </lightning:accordionSection>
+ 			<lightning:accordionSection name="Comprador" label="Comprador">
+         	    <aura:if isTrue="{!v.mostrarComprador}">
+         			<p class="slds-p-horizontal_small">
+           				<lightning:datatable
+            			columns="{!v.columns}"
+            			data="{!v.dataCompradores}"
+            			keyField="Id"
+            			hideCheckboxColumn="true"
+            			/>
+        			</p>
+                    <div  class="slds-align_absolute-center">
+                    <lightning:button  variant="brand"  label="Más datos" onclick="{! c.loadMoreDataCompradores }"/>
+                </div>
+        		<aura:set attribute="else">
+      				<p class="slds-p-horizontal_small">
+            			No hay datos que mostrar.
+        			</p>
+    			</aura:set>
+         		</aura:if>
+            </lightning:accordionSection>
+            <lightning:accordionSection name="Depositario" label="Depositario">
+                <aura:if isTrue="{!v.mostrarDepositario}">
+         			<p class="slds-p-horizontal_small">
+           				<lightning:datatable
+            			columns="{!v.columns}"
+            			data="{!v.dataDepositarios}"
+            			keyField="Id"
+            			hideCheckboxColumn="true"
+            			/>
+           			</p>
+                    <div class="slds-align_absolute-center">
+                    <lightning:button  variant="brand"  label="Más datos" onclick="{! c.loadMoreDataDepositarios }"/>
+                </div>
+        		<aura:set attribute="else">
+      				<p class="slds-p-horizontal_small">
+            			No hay datos que mostrar.
+        			</p>
+    			</aura:set>
+         		</aura:if>
+            
+            </lightning:accordionSection>
+         	
+         </lightning:accordion>
+    </lightning:card>     
+</aura:component>

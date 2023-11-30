@@ -1,0 +1,138 @@
+{
+	"vehiclesAvailableVO": 
+	[
+		{
+			"modelo": "MSX125 MY21",
+			"ventajas": "",
+			"marca": "HONDA MOTOS",
+			"version": "MSX125 MY21",
+			"kilometros": "1832",
+			"motor": "",
+			"color": "FORCE SILVER METALLIC",
+			"combustible": "Gasolina",
+			"fecha_matriculacion": "2021-03-25",
+			"precio": "3100",
+			"activo": "1",
+			"matricula": "E7430LNH",
+			"isla": "",
+			"concesionario": "SUC",
+			"potencia": "7",
+			"puertas": "0",
+			"cambio": "Automática",
+			"plazas": "",
+			"vin": "MLHJC92A1M5000326",
+			"tipo_de_coche": "",
+			"coste_real_del_vehiculo": "2441.17",
+			"sima_company_code": "396",
+			"destacado": "0",
+			"novedad": "0",
+			"cuota_aconsejada": 0,
+			"precio_final": "3000",
+			"precio_vn": "3400",
+			"precio_final_financiado": "2900",
+			"equipamiento": [
+				{
+					"CodeEquipamiento": "1ED",
+					"Categoria": "Opcional",
+					"Texto": "EURO5,ABS,OBD2,EVAPO,A",
+					"Activo": true,
+					"Revisado": false
+				},
+				{
+					"CodeEquipamiento": "1EE",
+					"Categoria": "Opcional",
+					"Texto": "EURO5,ABS,OBD2,EVAPO,E",
+					"Activo": true,
+					"Revisado": false
+				},
+				{
+					"CodeEquipamiento": "1EF",
+					"Categoria": "Opcional",
+					"Texto": "EURO5,ABS,OBD2,EVAPO,F",
+					"Activo": true,
+					"Revisado": false
+				},
+				{
+					"CodeEquipamiento": "1EG",
+					"Categoria": "Opcional",
+					"Texto": "EURO5,ABS,OBD2,EVAPO,G",
+					"Activo": true,
+					"Revisado": false
+				}
+			],
+			"foto": "https://internal.daxauto.es/cms/uploads/0000023957_E7430LNH_01-500-qz78tl.jpg",
+			"enlace_sf":
+				{
+					"dwacnarias_com": "https://dwacanarias.com/silence/motocicleta-1-plaza-batera-ext-6-kwh-blanca-f2721/",
+					"carpluscanarias_net": "https://carpluscanarias.net/silence/motocicleta-1-plaza-batera-ext-6-kwh-blanca-f2721/",
+					"lookar_es": "https://lookar.es/silence/motocicleta-1-plaza-batera-ext-6-kwh-blanca-f2721/"
+				}
+		},
+		{
+			"modelo": "MSX125 MY21",
+			"ventajas": "",
+			"marca": "AUDI",
+			"version": "MSX125 MY21",
+			"kilometros": "1832",
+			"motor": "",
+			"color": "FORCE SILVER METALLIC",
+			"combustible": "Gasolina",
+			"fecha_matriculacion": "2021-03-25",
+			"precio": "5100",
+			"activo": "1",
+			"matricula": "  ",
+			"isla": "",
+			"concesionario": "SUC",
+			"potencia": "7",
+			"puertas": "0",
+			"cambio": "Automática",
+			"plazas": "",
+			"vin": "MLHJC92A1M5000329",
+			"tipo_de_coche": "",
+			"coste_real_del_vehiculo": "6441.17",
+			"sima_company_code": "396",
+			"destacado": "0",
+			"novedad": "0",
+			"cuota_aconsejada": 0,
+			"precio_final": "6100",
+			"precio_vn": "14400",
+			"precio_final_financiado": "5000",
+			"foto": "https://internal.daxauto.es/cms/uploads/0000023957_E7430LNH_01-500-qz78tl.jpg",
+			"equipamiento": [
+				{
+					"CodeEquipamiento": "1ED",
+					"Categoria": "Opcional",
+					"Texto": "EURO5,ABS,OBD2,EVAPO,A",
+					"Activo": true,
+					"Revisado": false
+				},
+				{
+					"CodeEquipamiento": "1EE",
+					"Categoria": "Opcional",
+					"Texto": "EURO5,ABS,OBD2,EVAPO,E",
+					"Activo": true,
+					"Revisado": false
+				},
+				{
+					"CodeEquipamiento": "1EF",
+					"Categoria": "Opcional",
+					"Texto": "EURO5,ABS,OBD2,EVAPO,F",
+					"Activo": true,
+					"Revisado": false
+				},
+				{
+					"CodeEquipamiento": "1EG",
+					"Categoría": "Opcional",
+					"Texto": "EURO5,ABS,OBD2,EVAPO,G",
+					"Activo": true,
+					"Revisado": false
+				}
+			],
+			"enlace_sf":
+				{
+					"dwacnarias_com": "https://dwacanarias.com/silence/motocicleta-1-plaza-batera-ext-6-kwh-blanca-f2721/",
+					"carpluscanarias_net": "https://carpluscanarias.net/silence/motocicleta-1-plaza-batera-ext-6-kwh-blanca-f2721/"
+				}
+		}
+	]
+}	

@@ -1,0 +1,32 @@
+<aura:component controller="CreateUser" implements="forceCommunity:availableForAllPageTypes">
+    
+    
+    <aura:attribute name="Hide" type="Boolean" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:if isTrue ="{!not(v.Hide==true)}" >
+    
+    
+    <div class="slds-align_absolute-center">
+        <div style="background-color:white"> <!--#d9d9d9-->
+            <div style="font-weight: bold; text-align:center" class="slds-border_top slds-border_left slds-border_right">
+                <ui:outputText value="INFORMACIÓN BÁSICA DE PROTECCIÓN DE DATOS"></ui:outputText>
+            </div>
+            <div style="font-size:12px; text-align:left" class="slds-border_bottom slds-border_left slds-border_right">          
+                <ui:outputText value="Responsable: DOMINGO ALONSO GROUP, S.L.\n
+                                      Finalidad: envío de información publicitaria, ofertas y promociones 
+                                      relativas al Club de Fidelización WAH! By DAG.\n
+                                      Derechos: puede ejercitar su derecho de acceso, rectificación, supresión
+                                      y otros, tal como aparece en la información ampliada que puede conocer visitando nuestra política de privacidad."/>     
+            </div>
+        </div>
+    </div>
+    <div class="slds-align_absolute-center">
+        <div>
+            <lightning:input label="Quiero mantenerme informado de las novedades del Club de Fidelización WAH! By DAG" class="inline" type="checkbox" aura:id="PoliticaPriv" value="false" name="input1" onchange="{!c.echo}" />
+            <!-- label="Acepto la política de privacidad y las	 condiciones  de uso" -->
+            <!--<lightning:input type="checkbox-button" label="Input One" name="input1"  aura:id="PoliticaPriv"/>-->
+        </div>
+        <br/>
+    </div>
+    </aura:if>
+</aura:component>

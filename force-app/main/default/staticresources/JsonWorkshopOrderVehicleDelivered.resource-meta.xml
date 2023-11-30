@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>application/json</contentType>
+    <description>Prueba de request Json a la Api Rest WorkshopOrder para evento &quot;workshopOrderVehicleDelivered&quot;</description>
+</StaticResource>

@@ -1,0 +1,19 @@
+<aura:component controller="GetUserInfo" implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,flexipage:availableForRecordHome,force:hasSObjectName">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="userId" type="String" />
+    <aura:attribute name="isUserIdLoaded" type="Boolean" default="false" />
+    <aura:attribute name="sObjectName" type ="String"/>
+    <aura:if isTrue="{!v.isUserIdLoaded}">
+        <lightning:recordEditForm
+                                  onsuccess="{!c.handleSuccess}"
+                                  recordId="{!v.recordId}"
+                                  objectApiName="{!v.sObjectName}">
+            <lightning:messages />
+            <lightning:inputField fieldName="OwnerId" value="{!v.userId}" style="display:none" />
+            <div class="slds-m-top_medium">
+                <lightning:button variant="brand" type="submit" name="save" label="AutoAsignar" />
+            </div>
+        </lightning:recordEditForm> 
+    </aura:if>
+</aura:component>

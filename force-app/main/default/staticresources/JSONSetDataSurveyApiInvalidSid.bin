@@ -1,0 +1,21 @@
+{
+	"Encuesta": {
+		"Identificador": "",
+		"FechaRespuesta": "2020-01-01T09:30:00Z",
+		"Preguntas": [{
+				"CodigoPregunta": "sc1",
+				"Pregunta": "Según nuestros registros usted compró un Volkswagen  en nuestro concesionario . Por favor, ¿puede confirmar que estos datos son correctos?",
+				"Respuesta": "Si",
+				"CodigoRespuesta": "1",
+				"Titulo": " sc1"
+			},
+			{
+				"CodigoPregunta": "sc1",
+				"Pregunta": "¿Cuál es su nivel de satisfacción con el asesoramiento recibido por parte de nuestros empleados?",
+				"Respuesta": "5",
+				"CodigoRespuesta": "5",
+				"Titulo": " q003"
+			}
+		]
+	}
+}

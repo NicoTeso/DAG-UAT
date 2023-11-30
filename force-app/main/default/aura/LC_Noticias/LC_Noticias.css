@@ -1,0 +1,31 @@
+.THIS.title{
+    font-size: 15px;
+    line-height: 1.25em;
+    color: #43595e;
+    text-transform: uppercase;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    width:6px;
+}
+.THIS.date{
+    font-size: 10px;
+    color: #61b1de;
+    font-family: Georgia, Serif;
+    font-weight: 400;
+    text-align-last: left;
+}
+.THIS.text{
+    font-size: 12px;
+    line-height: 2;
+    color: #999;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    text-align: justify;
+}
+.THIS.containerPadding{
+    border-spacing: 10px;
+    text-align: justify;
+}
+.THIS.table{
+    border-spacing: 10px;
+}

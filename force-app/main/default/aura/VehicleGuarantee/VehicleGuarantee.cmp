@@ -1,0 +1,78 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="LC_VehicleGuaranteeController">
+	
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="recordAux" type ="Object" />
+    <!--<aura:attribute name="showDataGarantia" type="Boolean" />-->
+    <!--<aura:attribute name="showDataExtGarantia" type="Boolean" />-->
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.recordAux.showCardGarantia}">
+    	<lightning:card  title="Garantía" iconName="standard:reward">
+       		<div class="containerLayout">
+            	<lightning:layout multipleRows = "true">
+                    <aura:if isTrue="{!v.recordAux.showGarantia}">
+                		<lightning:layoutItem padding="around-small" size="6">
+                    		<div class="header-column">
+                        		<p class="field-title" title="Inicio garantía"><b>Inicio garantía</b></p>
+                        	    <p><ui:outputDate format="DD/MM/YYYY" value="{!v.recordAux.FechaInicioGarantia}"/></p>
+                        	</div>
+                   		</lightning:layoutItem>
+                   		<lightning:layoutItem padding="around-small" size="6">
+                    		<div class="header-column">
+                        		<p class="field-title" title="fin garantía"><b>Fin garantía</b></p>
+                        		<p><ui:outputDate format="DD/MM/YYYY" value="{!v.recordAux.FechaFinGarantia}"/></p>
+                        	</div>
+                   		</lightning:layoutItem>
+                    </aura:if>    
+                    <aura:if isTrue="{!v.recordAux.showGarantiaVO}">
+                    	<lightning:layoutItem padding="around-small" size="6">
+                    		<div class="header-column">
+                    	  		<p class="field-title" title="Inicio garantía"><b>Inicio garantía VO</b></p>
+                    	        <p><ui:outputDate format="DD/MM/YYYY" value="{!v.recordAux.FechaInicioGarantiaVO}"/></p>
+                    	   	</div>
+                 		</lightning:layoutItem>
+                    	<lightning:layoutItem padding="around-small" size="6">
+                    		<div class="header-column">
+                    	    	<p class="field-title" title="fin garantía"><b>Fin garantía VO</b></p>
+                    	        <p><ui:outputDate format="DD/MM/YYYY" value="{!v.recordAux.FechaFinGarantiaVO}"/></p>
+                    	   	</div>
+                  		</lightning:layoutItem>
+                    </aura:if>
+            	</lightning:layout>
+        	</div>
+        </lightning:card>
+  	</aura:if> 
+  	<aura:if isTrue="{!v.recordAux.showExtGarantia}">
+    	<lightning:card  title="Extensión de Garantía" iconName="standard:reward">
+          	<div class="containerLayout">
+            	<lightning:layout multipleRows = "true">
+                	<lightning:layoutItem padding="around-small" size="6">
+                    	<div class="header-column">
+                        	<p class="field-title" title="Límite Kms"><b>Límite Kms</b></p>
+                            <p>{!v.recordAux.kmsContratados}</p>
+                       	</div>
+                  	</lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="6">
+                    	<div class="header-column">
+                        	<p class="field-title" title="Límite Kms"><b>PR Number</b></p>
+                            <p>{!v.recordAux.PRNumber}</p>
+                     	</div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="6">
+                    	<div class="header-column">
+                        	<p class="field-title" title="Inicio garantía extensión"><b>Inicio garantía extensión</b></p>
+                            <p><ui:outputDate format="DD/MM/YYYY" value="{!v.recordAux.FechaContratoInicio}"/></p>
+                       	</div>
+                   	</lightning:layoutItem>
+                    <lightning:layoutItem padding="around-small" size="6">
+                    	<div class="header-column">
+                        	<p class="field-title" title="Fin garantía extensión"><b>Fin garantía extensión</b></p>
+                            <p><ui:outputDate format="DD/MM/YYYY" value="{!v.recordAux.FechaContratoFin}"/></p>
+                       	</div>
+                    </lightning:layoutItem>
+              	</lightning:layout>
+        	</div>
+     	</lightning:card>
+    </aura:if>
+    
+</aura:component>

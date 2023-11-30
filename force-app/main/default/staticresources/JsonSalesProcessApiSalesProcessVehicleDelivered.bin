@@ -1,0 +1,14 @@
+{
+	"eventType" : "SalesProcessVehicleDelivered",
+	"payload": {
+		"companyCode": "999",
+		"centerCode": "123",
+		"salesProcessId": "PACA078E-FA50-4DE1-ET2E-7D8588C9B7F7",
+		"salesmanEmail": "foo@bar.com",
+		"customerOwnerId": "CA2A078E-FA48-4DE1-AE2E-7D8588C9B7F7",
+		"vehicle": {
+			"vin": "2GNALCEK4E6273763",
+			"deliveryDate": "2020-01-01T09:30:00Z"
+		}
+	}
+}

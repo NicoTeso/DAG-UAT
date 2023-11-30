@@ -1,0 +1,10 @@
+<design:component label="Custom Login Form">
+    <design:attribute name="startUrl"/>
+    <design:attribute name="usernameLabel" default="DNI"/>
+    <design:attribute name="passwordLabel" default="Contraseña"/>
+    <design:attribute name="loginButtonLabel" default="Entrar"/>
+    <design:attribute name="forgotPasswordLabel" default="Resetear contraseña"/>
+    <design:attribute name="forgotPasswordUrl"/>
+    <design:attribute name="selfRegisterLabel" default="Darme de alta"/>
+    <design:attribute name="selfRegisterUrl"/>
+</design:component>

@@ -1,0 +1,21 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="LC_vehicleCampaignsController">
+	<aura:attribute name="recordId" type="String" />
+    <aura:attribute name="showData" type="Boolean"  default="false"/>
+    <aura:attribute name="items" type="List" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="cmpRefresh" event="c:refreshtimeLine" action="{!c.refresh}"/>
+ 
+    <aura:if isTrue="{!v.showData}">
+    	<lightning:card  title="Campañas" iconName="standard:campaign">
+            <div>
+            	<lightning:layout multipleRows = "true">
+                 	<aura:iteration items="{!v.items}" var="item">
+                        <c:VehicleCampaignMember item = "{!item}" />
+            	   	</aura:iteration>
+                </lightning:layout>
+            </div>
+        </lightning:card>
+   	</aura:if> 
+    
+</aura:component>

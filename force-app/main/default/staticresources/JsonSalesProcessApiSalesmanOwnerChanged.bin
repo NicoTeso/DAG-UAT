@@ -1,0 +1,9 @@
+{
+	"eventType": "SalesmanOwnerChanged",
+	"payload": {
+		"companyCode": "999",
+		"salesmanName": "Amalia Per Per",
+		"salesmanEmail": "foo1@bar.com",
+		"salesmanMobile": "601323127"
+	}
+}

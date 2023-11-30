@@ -1,0 +1,21 @@
+.THIS {
+
+}
+.THIS.my-select select{
+    background: #fad982 !important;
+    border: none;
+    border-radius: 15px 15px 15px 15px;
+}
+
+.THIS .myFavIcon{
+    color: #fad982 !important;
+    border: none;
+    size: large;
+    padding-bottom: 300%;
+}
+.THIS .myTrashIcon{
+    color: #a52a2a !important;
+    border: none;
+    size: large;
+    padding-bottom: 300%;
+}

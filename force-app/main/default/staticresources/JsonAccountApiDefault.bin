@@ -1,0 +1,65 @@
+{
+"AccountAPI":
+   {
+    "eventType" : "CustomerCreated",
+    "customerId" : "25",
+    "companyId" : "25",
+    "name" : "pruebaCliente",
+    "firstName" : "pruebaClienteFirstName",
+    "lastName" : "pruebaClienteLastName",
+    "tradeName" :"pruebaTrade",
+    "pais" : "Spain",
+    "tipoDocumento" : "VATId",
+    "tipoDocumentoEmpresa": "VATId",
+    "documento":"432343",
+    "isPersonAccount":false,
+    "salutation":"salutationPrueba",
+    "billingAddressId" : "12334",
+    "billingAddress" : "pruebaDireccion",
+    "billingStreet" : "prueba Calle",
+    "billingCity" : "Madrid",
+    "billingState" : null,
+    "billingPostalCode" : "codigoPostal",
+    "billingCountryIso" : "Spain",
+    "shippingAddressId" : "12334",
+    "shippingAddress" : "pruebaDireccion",
+    "shippingStreet" : "pruebaStreet",
+    "shippingCity" : "Madrid",
+    "shippingState" : null,
+    "shippingPostalCode" : "23455",
+    "shippingCountryIso" : "Germany",
+    "occupation" : "pruebaOcupacion",
+    "childrenCount" : "2",
+    "personBirthdate" : null,
+    "gender" : null,
+    "incomes" : null, 
+    "position" : null,
+    "maritalStatus": null,
+    "economicSector": null,
+    "methodsOfContact":
+	   [{"channel" : "Email",
+	    "value" : "pruebaEmail@pruebEmail.com",
+            "isDefault":true,
+            "preferredContactTime" : "tardes"
+	   },
+   	   {"channel" : "Phone",
+	    "value" : "666666666",
+           "isDefault":false,
+           "preferredContactTime" : "tardes"
+	   }],
+    "contact":
+	   [{"id": "1212",
+		"salutation": "buenas tardes",
+	    "firstName" : "pruebaFirstName",
+	    "lastName" : "pruebaLastName",
+	    "title" : null,
+	    "department": "departamento",
+	    "methodsOfContact" :
+	       [{"channel" : "Mobile",
+                "value" : "666666666",
+                "isDefault" : true,
+                "preferredContactTime" : "tardes"
+	       }]
+	   }]
+   }
+}

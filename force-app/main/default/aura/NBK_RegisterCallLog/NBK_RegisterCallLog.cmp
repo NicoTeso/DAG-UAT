@@ -1,0 +1,16 @@
+<!--
+ - Created by davidmartinez on 24/03/2021.
+ -->
+
+<aura:component implements="lightning:availableForFlowScreens,lightning:availableForFlowActions" controller="NBK_RegisterCallLog_Controller">
+
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="state" type="String" />
+    <aura:attribute name="notCompletedReason" type="String" />
+    <aura:attribute name="numberOfTries" type="Integer" />
+    <aura:attribute name="dateTimeInfo" type="String" />
+    <aura:attribute name="wrongPhone" type="Boolean" />
+    <aura:attribute name="discardReason" type="String" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.invoke}"/>
+</aura:component>

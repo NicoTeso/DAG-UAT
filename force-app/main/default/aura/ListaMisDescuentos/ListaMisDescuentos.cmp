@@ -1,0 +1,83 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="misDescuentosController" access="global" >
+    <aura:attribute name="Type" type="String"/>
+    <aura:attribute name="category" type="string"/>
+    <aura:attribute name="localizacion" type="string"/>
+    <aura:attribute name="localizacionBase" type="string"/>
+    <aura:attribute name="localizacionA" type="string"/>
+    <aura:attribute name="localizacionB" type="string"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="truthy" type="boolean" default="false"/>
+    <aura:attribute name="searchResult" type="List" description="use for store and display product list return from server"/>
+    <aura:attribute name="baseUrl" type="String"/>
+    <aura:attribute name="locDescuentos" type="List"/>
+    <aura:attribute name="locPicklist" type="List"/>
+    <aura:attribute name="categoriaPicklist" type="List"/>
+    <aura:attribute name="isFavorite" type="boolean" default="false"/>
+    
+    <aura:if isTrue="{!v.truthy == false}">
+        <div class="slds-m-left_x-small"> 
+      	  <lightning:button label="Filtrar" title="Non-primary action" onclick="{!c.openPicklist}"  class="button"/>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.truthy}">
+        <lightning:button label="Cerrar" title="Non-primary action" onclick="{!c.openPicklist}"/>
+        
+         <lightning:button label="Limpiar"  title="Non-primary action" onclick="{!c.limpiaFiltro}"/>
+  <!--   IMP 14/07/2020. Desechado por cliente -->
+        <lightning:select  value="{!v.category}" name="Categorias" label="Categoría" onchange="{!c.changeCategory}" class="my-select">
+            <option value="">-</option>
+            <aura:iteration items="{!v.categoriaPicklist}" var="categoria">
+                <option value="{!categoria}" text="{!categoria}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select value="{!v.localizacionBase}" name="Localizacion" label="Islas/Península" onchange="{!c.change}" class="my-select">
+            <option value="">-</option>
+            <aura:iteration items="{!v.locDescuentos}" var="locDescuento">
+                <option value="{!locDescuento}" text="{!locDescuento}"></option>
+            </aura:iteration>
+        </lightning:select>
+
+        <lightning:select value="{!v.localizacion}" name="Localizacion" label="Localización" onchange="{!c.doInit}" class="my-select">
+            <option value="">-</option>
+            <aura:iteration items="{!v.locPicklist}" var="locDescuento">
+                <option value="{!locDescuento}" text="{!locDescuento}"></option>
+            </aura:iteration>
+        </lightning:select>
+
+    </aura:if>    
+    
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr>
+                <aura:iteration items="{!v.columns}" var="cl" indexVar="count">
+                    <th scope="col">
+                        <div class="slds-truncate">{!cl.label}</div>
+                    </th>
+                </aura:iteration>
+            </tr>
+        </thead>
+        <tbody> 
+            <aura:iteration items="{!v.searchResult}" var="pr" indexVar="count">
+                <tr>
+                    <td>
+                        <div class="slds-truncate"><a href="{!v.baseUrl+ '/s/descuentos/' +pr.Id +'/'+ pr.Name}"><lightning:formattedRichText value="{!pr.Imagen_Descuento_Comunidad__c}"></lightning:formattedRichText></a></div>
+                    </td>
+                    <td>
+                        <aura:if isTrue="{!v.isFavorite == false}">
+                            <div data-value="{!pr.Id}"> 
+                                <lightning:buttonIcon size="large" iconName="utility:favorite" variant="bare" onclick="{!c.manageFavourite}" value="{!pr.Id}" alternativeText="Añadir a favoritos" title="Favoritos" class="myFavIcon"/>
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!v.isFavorite}">
+                            <div data-value="{!pr.Id}"> 
+                                <lightning:buttonIcon size="large" iconName="utility:delete" variant="bare" onclick="{!c.manageFavourite}" value="{!pr.Id}" alternativeText="Eliminar de favoritos" title="Eliminar" class="myTrashIcon"/>
+                            </div>
+                        </aura:if>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+</aura:component>

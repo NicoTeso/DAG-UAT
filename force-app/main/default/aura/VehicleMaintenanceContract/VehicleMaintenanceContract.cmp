@@ -1,0 +1,71 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="LC_vehicleMaintenanceContractController" >
+	<aura:attribute name="recordId" type="String" />
+    <aura:attribute name="showData" type="Boolean"  default="false"/>
+    <aura:attribute name="showItems" type="Boolean" default="false" />
+    <aura:attribute name="titleContract" type="String" default="Contrato Mantenimiento"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+   	<aura:if isTrue="{!v.showData}">
+     	<lightning:card  title="{!v.titleContract}" iconName="standard:service_contract">
+            <aura:if isTrue="{!v.showItems}">
+    			<lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Vehiculo__c">
+            	    <div class="containerLayout">
+            	        <lightning:layout multipleRows = "true">
+            	            <lightning:layoutItem padding="around-small" size="6">
+            	                <div class="header-column">
+            	                    <lightning:outputField fieldName="Contrato_Servicio_1__c" variant="label-hidden" />
+            	                </div>
+            	            </lightning:layoutItem>
+            	            <lightning:layoutItem padding="around-small" size="6">
+            	                <div class="header-column">
+            	                    <lightning:outputField fieldName="Contrato_Servicio_2__c" variant="label-hidden" />
+            	                </div>
+            	            </lightning:layoutItem>
+            	            <lightning:layoutItem padding="around-small" size="6">
+            	                <div class="header-column">
+            	                    <lightning:outputField fieldName="Contrato_Servicio_3__c" variant="label-hidden" />
+            	                </div>
+                	        </lightning:layoutItem>
+                	        <lightning:layoutItem padding="around-small" size="6">
+               		             <div class="header-column">
+                	                <lightning:outputField fieldName="Contrato_Servicio_4__c" variant="label-hidden" />
+                	            </div>
+                	        </lightning:layoutItem>
+                	        <lightning:layoutItem padding="around-small" size="6">
+                	            <div class="header-column">
+                	                <lightning:outputField fieldName="Contrato_Servicio_5__c" variant="label-hidden" />
+                	            </div>
+                	        </lightning:layoutItem>
+                	        <lightning:layoutItem padding="around-small" size="6">
+                	            <div class="header-column">
+                	                <lightning:outputField fieldName="Contrato_Servicio_6__c" variant="label-hidden" />
+                	            </div>
+                	        </lightning:layoutItem>
+                	        <lightning:layoutItem padding="around-small" size="6">
+                	            <div class="header-column">
+                	                <lightning:outputField fieldName="Contrato_Servicio_7__c" variant="label-hidden" />
+                	            </div>
+                	        </lightning:layoutItem>
+                	        <lightning:layoutItem padding="around-small" size="6">
+                	            <div class="header-column">
+                	                <lightning:outputField fieldName="Contrato_Servicio_8__c" variant="label-hidden" />
+                	            </div>
+                	        </lightning:layoutItem>
+                	        <lightning:layoutItem padding="around-small" size="6">
+                	            <div class="header-column">
+                	                <lightning:outputField fieldName="Contrato_Servicio_9__c" variant="label-hidden" />
+                	            </div>
+                	        </lightning:layoutItem>
+                	        <lightning:layoutItem padding="around-small" size="6">
+                	            <div class="header-column">
+                	                <lightning:outputField fieldName="Contrato_Servicio_10__c" variant="label-hidden" />
+                	            </div>
+                	        </lightning:layoutItem>
+                	    </lightning:layout>
+                	</div>
+            	</lightning:recordViewForm>   
+            </aura:if>
+   		</lightning:card>
+    </aura:if>
+    
+</aura:component>

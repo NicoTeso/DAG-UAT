@@ -1,0 +1,23 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <lightning:card iconName="custom:custom19" title="Servicios">
+        <div class="slds-p-left_large slds-p-right_medium">	
+            <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Vehiculo__c">
+                <lightning:outputField fieldName="Services__c" variant="label-hidden"/>
+            </lightning:recordViewForm>
+        </div>
+    </lightning:card>
+        <lightning:card iconName="custom:custom31" title="Equipamientos">
+        <div class="slds-p-left_large slds-p-right_medium">	
+            <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Vehiculo__c">
+                <lightning:outputField fieldName="equipments__c" variant="label-hidden"/>
+            </lightning:recordViewForm>
+        </div>
+    </lightning:card>
+    <lightning:card iconName="custom:custom18" title="Accesorios">
+        <div class="slds-p-left_large slds-p-right_medium">	
+            <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Vehiculo__c">
+                <lightning:outputField fieldName="Accesories__c" variant="label-hidden"/>
+            </lightning:recordViewForm>
+        </div>
+    </lightning:card>
+</aura:component>

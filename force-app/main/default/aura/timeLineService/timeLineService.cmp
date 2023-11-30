@@ -1,0 +1,38 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="LC_timeLineServiceController" >
+	<aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="type" type="String" />
+    <aura:attribute name="Services" type="List" />
+    <aura:attribute name="DateInit" type="Date" />
+    <aura:attribute name="DateEnd" type="Date" />
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="cmpRefresh" event="c:refreshtimeLine" action="{!c.refresh}"/>
+ 
+    <div class="slds-m-bottom_medium" style="Background:#EBEBEB">
+        <lightning:layout >
+            <lightning:layoutItem size="4" padding="around-small" >
+                <p class="field-title" title="Fecha desde"><b>Fecha desde</b></p>
+                <p><lightning:input type="date" name="input1" variant="label-hidden" value="{!v.DateInit}" dateStyle="short" /></p>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">
+                <p class="field-title" title="Fecha hasta"><b>Fecha hasta</b></p>
+                <p><lightning:input type="date" name="input2" variant="label-hidden" value="{!v.DateEnd}" dateStyle="short"/></p>
+            	</lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">
+                <div class="slds-m-vertical_medium">
+                	<lightning:button label="Buscar" iconName="utility:cases" iconPosition="left" onclick="{! c.handleClick }" />
+            	</div>
+            </lightning:layoutItem> 
+        </lightning:layout>
+    </div>
+    <div>
+    	<ul class="slds-timeline">
+           <aura:iteration var="service" items="{!v.Services}">
+         	 <div>
+                <c:timeLineServiceItem itemDetail="{!service}"/>		
+    		</div>	
+          </aura:iteration>
+    	</ul>
+    </div>
+</aura:component>

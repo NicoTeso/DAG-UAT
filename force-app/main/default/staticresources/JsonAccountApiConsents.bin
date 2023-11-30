@@ -1,0 +1,15 @@
+{
+	"AccountAPI": {
+		"eventType": "ConsentsRegistered",
+		"customerId": "25",
+		"companyId": "25",
+		"isPersonAccount": true,
+		"DateConsent": "2020-03-12T14:13:44.0000000Z",
+		"MethodOfContactConsent": [{
+			"PurposeId": "ProductSale",
+			"Value": "Allow",
+			"ChannelType": "Call",
+			"ChannelValue": "916665544"
+		}]
+	}
+}

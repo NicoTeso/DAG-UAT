@@ -1,0 +1,8 @@
+<aura:component implements="force:hasRecordId,flexipage:availableForAllPageTypes" access="global" controller="ExternalService" >
+	<aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />    
+    <lightning:button label="Enviar a SIMA" onclick="{!c.createJSON}" />
+    
+
+</aura:component>

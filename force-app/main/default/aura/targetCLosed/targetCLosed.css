@@ -1,0 +1,10 @@
+.THIS {
+        background-color: #EBEBEB;
+}
+
+.THIS .field-title {
+    font-size: .75rem;
+    line-height: 1.25;
+    color: #54698d;
+    margin-bottom: .10rem;
+}

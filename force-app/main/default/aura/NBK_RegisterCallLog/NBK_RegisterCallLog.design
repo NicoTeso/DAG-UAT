@@ -1,0 +1,13 @@
+<!--
+ - Created by davidmartinez on 24/03/2021.
+ -->
+
+<design:component>
+    <design:attribute name="recordId" label="Record ID" />
+    <design:attribute name="state" label="Estado" />
+    <design:attribute name="notCompletedReason" label="Razón no completado" />
+    <design:attribute name="numberOfTries" label="Nº de intentos" />
+    <design:attribute name="dateTimeInfo" label="Hora y fecha de llamada" />
+    <design:attribute name="wrongPhone" label="Teléfono erróneo" />
+    <design:attribute name="discardReason" label="Motivo de descarte" />
+</design:component>

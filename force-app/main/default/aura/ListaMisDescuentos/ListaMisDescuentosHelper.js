@@ -1,0 +1,6 @@
+({
+    locDescuentos : [],
+	helperMethod : function() {
+		
+	}
+})

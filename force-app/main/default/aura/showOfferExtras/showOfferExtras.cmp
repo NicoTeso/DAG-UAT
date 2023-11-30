@@ -1,0 +1,30 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <lightning:card iconName="custom:custom19" title="Servicios">
+        <div class="slds-p-left_large slds-p-right_medium">	
+            <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Detalle_Oferta__c">
+                <lightning:outputField fieldName="Services__c" variant="label-hidden"/>
+            </lightning:recordViewForm>
+        </div>
+    </lightning:card>
+    <lightning:card iconName="custom:custom31" title="Equipamientos">
+        <div class="slds-p-left_large slds-p-right_medium">	
+            <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Detalle_Oferta__c">
+                <lightning:outputField fieldName="Equipment__c" variant="label-hidden"/>
+            </lightning:recordViewForm>
+        </div>
+    </lightning:card>
+    <lightning:card iconName="custom:custom18" title="Accesorios">
+        <div class="slds-p-left_large slds-p-right_medium">	
+            <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Detalle_Oferta__c">
+                <lightning:outputField fieldName="Accessories__c" variant="label-hidden"/>
+            </lightning:recordViewForm>
+        </div>
+    </lightning:card>
+    <lightning:card iconName="custom:custom17" title="Financiación">
+        <div class="slds-p-left_large slds-p-right_medium">	
+            <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Detalle_Oferta__c">
+                <lightning:outputField fieldName="Financings__c" variant="label-hidden"/>
+            </lightning:recordViewForm>
+        </div>
+    </lightning:card>
+</aura:component>

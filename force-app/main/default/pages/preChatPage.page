@@ -1,0 +1,171 @@
+<apex:page showHeader="false" standardController="Account" extensions="PreChatController">
+    <style type="text/css">
+        #form-container {
+        	max-width: 300px;
+        	height: 90vh;
+        	margin: 0 auto;
+        	padding: 20px;        	
+        }
+
+        #welcome {
+        	font-size: 2em;
+        	font-weight: bold;
+        	text-align: center;
+        }
+
+        #prechatForm {
+            
+        }
+
+        .form-textfield {
+        	width: 95%;
+        	margin: 5px auto;
+        	padding: 5px;
+        }
+
+        .form-picklist {
+        	width: 100%;
+        	margin: 5px auto;
+        	padding: 5px;
+        }
+
+        .form-label {
+        	font-weight: bold;
+        }
+
+        #prechat_submit {
+        	width: 100%;
+        	padding: 10px;
+        	margin: 0 auto;
+        }
+    </style>
+
+	<!-- This script takes the endpoint URL parameter passed from the deployment page and makes it the action for the form -->
+    <script type='text/javascript'> 
+        (function() {
+            function handlePageLoad() {
+                var endpointMatcher = new RegExp("[\\?\\&]endpoint=([^&#]*)");
+                var domainMatcher = new RegExp("^(https?:\\/\\/(.+?\\.)?(salesforce|salesforcescrt|salesforceliveagent)\\.com(\\/[A-Za-z0-9\\-\\._~:\\/\\?#\[\\]@!$&'\\(\\)\*\\+,;\\=]*)?)");
+
+                var endpointAttr = endpointMatcher.exec(document.location.search)[1];
+
+                // if the endpoint domain is valid
+                if (domainMatcher.test(decodeURIComponent(endpointAttr))) {
+                    document.getElementById('prechatForm').setAttribute('action',
+                        decodeURIComponent(endpointAttr.replace("javascript: ", "")));
+                } else {
+                    // invalid endpoint domain, set the action to empty
+                    console.error("invalid domain: " + endpointAttr);
+                    document.getElementById('prechatForm').setAttribute('action', "");
+                }
+            }
+
+            if (window.addEventListener) {
+                window.addEventListener('load', handlePageLoad, false);
+            } else {
+                window.attachEvent('onload', handlePageLoad, false);
+            }
+        })();
+
+        function getAccountOrLeadByEmail() {
+            console.log('Getting Account ID or Lead ID...');
+            var customerEmail = document.getElementById('email').value;
+
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.PreChatController.getAccountByEmail}',
+                customerEmail, 
+                function(result, event) {
+                    console.log('Account ID: ' + result);
+
+                    if (event.status) {
+                        if (result === 'none') {
+                            Visualforce.remoting.Manager.invokeAction(
+                                '{!$RemoteAction.PreChatController.getLeadByEmail}',
+                                customerEmail, 
+                                function(result, event) {
+                                    console.log('Lead ID: ' + result);
+
+                                    if (event.status) {
+                                        document.getElementById('leadId').value = result;
+                                        document.getElementById('accountId').value = '';
+                                    }
+                                }, 
+                                {escape: true}
+                            );
+            			}
+                        else {
+                            document.getElementById('accountId').value = result;
+                            document.getElementById('leadId').value = '';
+                        };
+                    }
+                },
+                {escape: true}
+            );
+        }
+    </script>
+
+    <div id="form-container">
+        <div style="text-align:center;">
+                <apex:image url="{!$Resource.prechatDomingoAlonso}" height="125" />
+		</div>
+        
+        <p id="welcome">Bienvenido, ¿en qué puedo ayudarte?</p>
+		
+        <!-- Form that gathers information from the chat visitor and sets the values to Chat Custom Details used later -->
+        <form method='post' id='prechatForm'>
+            
+            
+            <input id='name' class="form-textfield" type='text' name='liveagent.prechat:LiveChatTranscriptCustomerName' placeholder="Nombre"/><br/>
+            <input id='email' class="form-textfield" type='email' name='liveagent.prechat:LiveChatTranscriptCustomerEmail' placeholder="Email" onfocusout="getAccountOrLeadByEmail()"/><br/>
+            <select id='subject' class="form-picklist" name='liveagent.prechat:LiveChatTranscriptCustomerProblem'>
+                <option name="Venta" value="Venta">Venta</option>  ,RRHH, Atención al cliente, Patrocinios, Otros
+                <option name="Postventa" value="Postventa">Postventa</option>
+                <option name="RRHH" value="RRHH">RRHH</option>
+                <option name="AtencionCliente" value="Atención al cliente">Atención al cliente</option>
+                <option name="Patrocinio" value="Patrocinio">Patrocinio</option>
+                <option name="Otros" value="Otros">Otros</option>
+                
+			</select><br/>
+
+            <input id="termconditions" name="termconditions" type="checkbox" required="true"/>
+            <label class="form-label" for="termconditions">Acepto los términos y condiciones de uso.</label>
+
+            <!-- Used to set the visitor's name for the agent in the Console -->
+            <input type="hidden" name="liveagent.prechat.name" id="prechat_field_name"/>
+
+            <!-- Accepted Terms and Conditions -->
+            <input type="hidden" name="liveagent.prechat:LiveChatTranscriptTermsAndConditions" value="true"/><br/>
+            <input type="hidden" name="liveagent.prechat.save:LiveChatTranscriptTermsAndConditions" value="TermsAndConditions__c"/>
+
+            <!-- AccountId -->
+            <input id="accountId" type="hidden" name="liveagent.prechat:LiveChatTranscriptAccountId" value=""/><br/>
+            <input type="hidden" name="liveagent.prechat.save:LiveChatTranscriptAccountId" value="AccountId"/>
+
+            <!-- LeadId -->
+            <input id="leadId" type="hidden" name="liveagent.prechat:LiveChatTranscriptLeadId" value=""/><br/>
+            <input type="hidden" name="liveagent.prechat.save:LiveChatTranscriptLeadId" value="LeadId"/>
+
+            <!-- map: Use the data from prechat form to map it to the Salesforce record's fields -->
+            <input type="hidden" name="liveagent.prechat.findorcreate.map:Account"
+                   value="Email, AccountEmail"/>
+
+            <!-- doFind, doCreate and isExactMatch example for a Account: 
+                Find an account whose Email exactly matches the value provided by the customer in the form -->
+            <input type="hidden" name="liveagent.prechat.findorcreate.map.doFind:Account" value="Email, true"/>
+            <input type="hidden" name="liveagent.prechat.findorcreate.map.isExactMatch:Account" value="Email, true"/>
+
+            <!-- showOnCreate: Open the Account record as sub-tabs to the chat for the agent in the Console -->
+            <!--<input type="hidden" name="liveagent.prechat.findorcreate.showOnCreate:Account" value="true"/>-->
+
+            <!-- saveToTranscript: Associates the records found / created to the Live Chat Transcript record. --> 
+            <input type="hidden" name="liveagent.prechat.findorcreate.saveToTranscript:Account" value="AccountId"/>
+            <input type="hidden" name="liveagent.prechat.save:LiveChatTranscriptCustomerName" value="CustomerName__c"/>
+            <input type="hidden" name="liveagent.prechat.save:LiveChatTranscriptCustomerEmail" value="CustomerEmail__c"/>
+            <input type="hidden" name="liveagent.prechat.save:LiveChatTranscriptCustomerProblem" value="CustomerProblem__c"/>
+
+            <input type='submit' value='CONTACTAR' id='prechat_submit'/>
+            
+            
+        </form>
+    </div>
+</apex:page>

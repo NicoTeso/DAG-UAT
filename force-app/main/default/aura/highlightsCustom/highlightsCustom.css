@@ -1,0 +1,285 @@
+.THIS {
+        background-color: #EBEBEB;
+}
+
+.THIS .field-title {
+    font-size: .75rem;
+    line-height: 1.25;
+    color: #54698d;
+    margin-bottom: .10rem;
+}
+.THIS .audi {
+    background-repeat: no-repeat;
+	background-image: url("/resource/1588070331000/icon_audi");
+   
+}
+.THIS .volkswagen {
+    background-repeat: no-repeat;
+   background-image: url("/resource/icon_volskwagen");
+   
+}
+.THIS .vwcomerciales {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_vwcomerciales");
+   
+}
+.THIS .hondamotos {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_HondaMotos");
+   
+}
+.THIS .man {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_Man");
+   
+}
+.THIS .manautobus {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_Man");
+   
+}
+.THIS .ducati {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_ducati");
+   
+}
+.THIS .toyota {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_toyota");
+   
+}
+.THIS .hyundai {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_hyundai");
+   
+}
+.THIS .bmw {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_bmw");
+   
+}
+.THIS .honda {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_honda");
+   
+}
+.THIS .renault {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_renault");
+   
+}
+.THIS .citroen {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_citroen");
+   
+}
+.THIS .fiat {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_fiat");
+   
+}
+.THIS .ford {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_ford");
+   
+}
+.THIS .gm {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_gm");
+   
+}
+.THIS .landrover {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_landrover");
+   
+}
+.THIS .mercedes {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_mercedes");
+   
+}
+.THIS .mini {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_mini");
+   
+}
+.THIS .mitsubishi {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_mitsubishi");
+   
+}
+.THIS .nissan {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_nissan");
+   
+}
+.THIS .skoda {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_skoda");
+   
+}
+.THIS .subaru {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_subaru");
+   
+}
+.THIS .tesla {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_tesla");
+   
+}
+.THIS .alfaromeo {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_alfaromeo");
+   
+}
+.THIS .bentley {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_bentley");
+   
+}
+.THIS .chevrolet {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_chevrolet");
+   
+}
+.THIS .chrysler {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_chrysler");
+   
+}
+.THIS .dacia {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_dacia");
+   
+}
+.THIS .daihatsu {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_daihatsu");
+   
+}
+.THIS .ds {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_ds");
+   
+}
+.THIS .isuzu {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_isuzu");
+   
+}
+.THIS .iveco {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_iveco");
+   
+}
+.THIS .jaguar {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_jaguar");
+   
+}
+.THIS .jeep {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_jeep");
+   
+}
+.THIS .kawasaki {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_kawasaki");
+   
+}
+.THIS .kia {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_kia");
+   
+}
+.THIS .ktm {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_ktm");
+   
+}
+.THIS .lamborghini {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_lamborghini");
+   
+}
+.THIS .lancia {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_lancia");
+   
+}
+.THIS .lexus {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_lexus");
+   
+}
+.THIS .mazda {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_mazda");
+   
+}
+.THIS .porsche {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_porsche");
+   
+}
+.THIS .saab {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_saab");
+   
+}
+.THIS .seat {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_seat");
+   
+}
+.THIS .silence {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_silence");
+   
+}
+.THIS .ssangyong {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_ssangyong");
+   
+}
+.THIS .suzuki {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_suzuki");
+   
+}
+.THIS .triumph {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_triumph");
+   
+}
+.THIS .volvo {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_volvo");
+   
+}
+.THIS .yamaha {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_yamaha");
+   
+}
+.THIS .daewoo {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_daewoo");
+   
+}
+.THIS .opel {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_opel");
+   
+}
+.THIS .peugeot {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_peugeot");
+   
+}
+.THIS .smart {
+   background-repeat: no-repeat;
+   background-image: url("/resource/icon_smart");
+   
+}

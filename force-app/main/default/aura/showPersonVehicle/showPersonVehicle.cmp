@@ -1,0 +1,140 @@
+<aura:component implements="flexipage:availableForRecordHome" access="global" controller ="LC_showPersonVehicleController" >
+
+	<aura:attribute name="recordId" type="String" />
+    <aura:attribute name="title" type="String" />
+    <aura:attribute name="showData" type="Boolean" />
+    <aura:attribute name="Response" type="Object" />
+    <aura:attribute name="showTable" type ="Boolean" />
+    <aura:attribute name="hasData" type ="Boolean" />
+    <aura:attribute name="showButton" type ="Boolean" />
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="data" type="Object"/>
+    
+    <aura:attribute name="enableInfiniteLoading" type="Boolean" default="true"/>
+    <aura:attribute name="loadMoreStatus" type="String" default=""/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.showData}">
+    	<lightning:card  title="{!v.title}" iconName="standard:client">
+		    <div class="containerLayout">
+                <lightning:layout multipleRows = "true" class ="slds-m-bottom_small" >
+                	<aura:if isTrue="{!v.Response.tipo == 'Empresa'}">
+                    	<lightning:layoutItem padding="around-small" size="12">
+                    		<div class="header-column">
+                        	    <lightning:formattedUrl value="{!'/'+ v.Response.identificacion}"
+        						label="{!v.Response.name}" target="_self" />
+                       		</div>
+                		</lightning:layoutItem>
+                        <lightning:layoutItem padding="horizontal-small" size="12">
+                    		<div class="header-column">
+                        		    <lightning:formattedPhone value="{!v.Response.phone}"/>&nbsp;
+                                	<lightning:icon iconName="action:approval" alternativeText="Allow" title="Allow" size="xx-small"/>
+                           	</div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="horizontal-small" size="12">
+                        	<div class="header-column">
+                            	<lightning:formattedPhone value="{!v.Response.mobilePhone}"/>&nbsp;
+                                <lightning:icon iconName="action:approval" alternativeText="Allow" title="Allow" size="xx-small"/>
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="horizontal-small" size="12">
+                    		<div class="header-column">
+                        		    <lightning:formattedEmail value="{!v.Response.email}"/>&nbsp;
+                                	<lightning:icon iconName="action:approval" alternativeText="Allow" title="Allow" size="xx-small"/>
+                         	</div>
+                		</lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="12">
+                    		<div class="header-column">
+                        		<p><lightning:formattedAddress
+        							street="{!v.Response.street}"
+        							city="{!v.Response.city}"
+        							country="{!v.Response.country}"
+        							province="{!v.Response.province}"
+        							postalCode="{!v.Response.postCode}"
+        						/></p>
+               				</div>
+                		</lightning:layoutItem>
+            			<aura:set attribute="else">
+                            <lightning:layoutItem padding="around-small" size="7">
+                    			<div class="header-column">
+                        	    	<lightning:formattedUrl value="{!'/'+ v.Response.identificacion}"
+        							label="{!v.Response.name}" target="_self" />
+                       			</div>
+                			</lightning:layoutItem>
+                    		<lightning:layoutItem padding="around-small" size="5">
+                                <div class="header-column">
+                                <aura:if isTrue="{!v.Response.fichaUnica}">
+                                    <span style="font-weight:bold; color:green">Tiene Ficha Única</span>
+                                <aura:set attribute ="else">
+                                    <span style="font-weight:bold; color:red">No tiene Ficha Única</span>
+                                </aura:set>
+                                </aura:if>
+                    			    
+                       			</div>
+                			</lightning:layoutItem>
+               			    <lightning:layoutItem padding="horizontal-small" size="12">
+                    			<div class="header-column">
+                        			   <lightning:formattedPhone value="{!v.Response.phone}"/>&nbsp;
+                            	       <lightning:icon iconName="{!v.Response.consenPhoneIcon}" alternativeText="{!v.Response.consenphone}" title="{!v.Response.consenphone}" size="xx-small"/>
+                            	</div>
+                			</lightning:layoutItem>
+                    	    <lightning:layoutItem padding="horizontal-small" size="12">
+                                <div class="header-column">
+                                       <lightning:formattedPhone value="{!v.Response.mobilePhone}"/>&nbsp;
+                                       <lightning:icon iconName="{!v.Response.consenMobilePhoneIcon}" alternativeText="{!v.Response.consenmobilePhone}" title="{!v.Response.consenmobilePhone}" size="xx-small"/>
+                                </div>
+                            </lightning:layoutItem>
+                    	    <lightning:layoutItem padding="horizontal-small" size="12">
+                                <div class="header-column">
+                                       <lightning:formattedEmail value="{!v.Response.email}"/>&nbsp;
+                                       <lightning:icon iconName="{!v.Response.consenEmailIcon}" alternativeText="{!v.Response.consenemail}" title="{!v.Response.consenemail}" size="xx-small"/>
+                                </div>
+                            </lightning:layoutItem>
+                    	    <lightning:layoutItem padding="around-small" size="12">
+                                <div class="header-column">
+                                    <p><lightning:formattedAddress
+                                        street="{!v.Response.street}"
+                                        city="{!v.Response.city}"
+                                        country="{!v.Response.country}"
+                                        province="{!v.Response.province}"
+                                        postalCode="{!v.Response.postCode}"
+                                    /></p>
+                                </div>
+                            </lightning:layoutItem>
+             			</aura:set>
+        			</aura:if>
+                </lightning:layout>
+            </div>
+            <aura:if isTrue="{!v.hasData}">
+                <aura:if isTrue="{!v.showTable}">
+                    <div class="slds-m-bottom_xx-small">
+        			<p class="slds-p-horizontal_small">
+           				<lightning:datatable
+            				columns="{!v.columns}"
+            				data="{!v.data}"
+            				keyField="Id"
+            				hideCheckboxColumn="true"
+                    	    />
+            		</p>
+                    </div>
+                    <div class="slds-clearfix">
+                    		<lightning:button  class ="slds-float_left" variant="base"  label="Ocultar vehículos" onclick="{! c.hideDataVehicle }"/>
+                			<lightning:button  class="slds-float_right" variant="base"  label="Más datos" onclick="{! c.loadMoreData }"/>
+                    </div>
+                <aura:set attribute="else">
+                	<aura:if isTrue="{!v.showButton}">
+                    	<div class="slds-align_absolute-center">
+                    		<lightning:button  variant="base"  label="Mostrar vehículos" onclick="{! c.showDataVehicle }"/>
+                		</div>
+                    </aura:if>
+                    
+                </aura:set>
+        		</aura:if>
+        	<aura:set attribute="else">
+            	<h2><strong>No hay datos de vehículo.</strong></h2>
+      		</aura:set>
+            </aura:if>
+        </lightning:card>
+    </aura:if> 
+	
+</aura:component>

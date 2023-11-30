@@ -1,0 +1,30 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName" access="global"  controller="LC_LookUpClienteAndLeadByPhoneController">
+	 
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name ="record" type="Object" />
+    <aura:attribute name="recordError" type="String" />
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="mostrar" type="Boolean" />
+    <aura:attribute name ="title" type ="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    
+     <lightning:card class="slds-text-heading_small" variant="Narrow" title="{!v.title}" iconName="standard:individual" >
+        <aura:if isTrue="{!v.mostrar}">
+         	<p class="slds-p-horizontal_small">
+           		<lightning:datatable
+            	columns="{!v.columns}"
+            	data="{!v.data}"
+            	keyField="Id"
+            	hideCheckboxColumn="true"
+            	onrowaction="{! c.handleRowAction }"/>
+        	</p>
+        <aura:set attribute="else">
+      		<p class="slds-p-horizontal_small">
+            	No hay datos que mostrar.
+        	</p>
+    	</aura:set>
+         </aura:if>
+    </lightning:card>     
+</aura:component>

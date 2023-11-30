@@ -1,0 +1,42 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" controller="NewsController">
+    <aura:attribute name="News" type="List"/>
+    <aura:iteration items="{!v.News}" var="cl" indexVar="count">
+        <div class="slds-align_absolute-center" style="margin:30px">
+            <table border="0" cellspacing="5" width="10px"  >
+                <tr> 
+                    <td>
+                        <div class="slds-align_absolute-center">
+                            <lightning:formattedRichText value="{!cl.Imagen__c}"/><br /><br />
+                        </div>
+                    </td>  
+                </tr>
+                <tr class="containerPadding"> 
+                    <td>   
+                        <div style="text-align: justify; font-weight: bold; color: darkblue;"  styleClass="title slds-align_absolute-center"  >
+                            <lightning:formattedRichText value="{!cl.Titular__c}"/><br />       
+                        </div>
+                        <br></br>
+                    </td>  
+                </tr>
+                <tr class="containerPadding"> 
+                    <td>  
+                        <div styleClass="date" style="font-weight: bold;" >
+                            <lightning:formattedDateTime value="{!cl.Fecha_noticia__c}"/><br />
+                            
+                        </div>
+                        <br></br>
+                    </td>  
+                </tr>
+                <tr class="containerPadding slds-align_absolute-center"> 
+                    <td>  
+                        <div style="text-align: justify;" styleClass="text"  >
+                            <lightning:formattedText value="{!cl.Texto_Noticia__c}"/>
+                        </div>
+                    </td>  
+                </tr>
+            </table>
+        </div>
+    </aura:iteration>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+</aura:component>

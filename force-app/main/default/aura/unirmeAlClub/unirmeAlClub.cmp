@@ -1,0 +1,15 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 08-19-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="generarNumSocioController" access="global" >
+  <aura:attribute name="checked" type="String" />
+  <aura:attribute name="disabled" type="Boolean" default="false"/>
+    
+    <div class="slds-align_absolute-center" style="height:5rem" >
+        <ui:button class="vis-boton-gris" label="UNIRME AL CLUB" press="{!c.handleClick}" disabled="{!v.disabled}"/>
+    </div>
+</aura:component>

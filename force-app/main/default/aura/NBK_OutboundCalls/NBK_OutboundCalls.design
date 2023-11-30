@@ -1,0 +1,5 @@
+<design:component>
+    <design:attribute name="cmpTitle" label="Titulo del componente" />
+    <design:attribute name="recordId" label="Id del registro" description="Este campo es rellenado automáticamente" />
+    <design:attribute name="isVentaActiva" label="Venta activa" default="false" description="Indica si el componente está siendo utilizado para llamadas salientes de venta activa" />
+</design:component>

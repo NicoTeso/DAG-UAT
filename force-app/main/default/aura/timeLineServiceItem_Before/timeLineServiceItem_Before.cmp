@@ -1,0 +1,37 @@
+<aura:component >
+    <aura:attribute name="itemDetail" type="ActivityServiceTimeLineModel"/>
+    <li class="slds-timeline__item">       
+         <!-- Text Describing the item (hidden) -->
+         <span class="slds-assistive-text">task</span>
+         <div class="slds-media">
+             <div class="slds-media__body">
+                 <div class="slds-media slds-media--timeline slds-timeline__media--task">
+                     <div class="slds-media__figure">
+                         <lightning:icon iconName="standard:task2" alternativeText="Servicio realizado" title="Servicio realizado" />
+                     </div>
+                     <div class="slds-media__body">
+                     	<div class="slds-media slds-tile slds-media--small">
+              				<div class="slds-media__body">
+                                <p class="slds-tile__title slds-truncate"><a style="color: black" href="{!'/'+v.itemDetail.RecordId}" target="_self"><b>{!v.itemDetail.name}</b></a></p>
+                				<ul class="slds-tile__detail slds-list--horizontal slds-text-body--small">
+                  					<li class="slds-list__item slds-m-right--large">
+                                        <span><b>Kms:</b></span>
+                    					<span class="slds-m-left--xx-small">{!v.itemDetail.kms}</span>
+                  					</li>
+                                    <li class="slds-list__item slds-m-right--large">
+                                        <span><b>Fecha:</b></span>
+                    					<span class="slds-m-left--xx-small"><ui:outputDate format="DD/MM/YYYY" value="{!v.itemDetail.fecha}"/></span>
+                  					</li>
+                  					<li class="slds-list__item">
+                                        <span><b>Edad:</b></span>
+                    					<span class="slds-m-left--xx-small">{!v.itemDetail.edad}</span>
+                  					</li>
+                                </ul>
+              				</div>
+            			</div>
+          			</div>
+        		</div>
+      		</div>
+    	</div>
+  	</li> 	
+</aura:component>

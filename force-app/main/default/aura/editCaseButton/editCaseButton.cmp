@@ -1,0 +1,12 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName" controller="EditCaseButtonController">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="caseId" type="String" />
+    <aura:attribute name ="leadId" type ="String" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    
+    <lightning:button  label="Crear Lead" onclick="{!c.buttonLead}" />
+    <lightning:button  label="Crear Caso" onclick="{!c.buttonCase}"/>
+    
+</aura:component>

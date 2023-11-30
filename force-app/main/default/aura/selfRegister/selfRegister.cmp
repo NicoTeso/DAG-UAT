@@ -1,0 +1,213 @@
+<!-- add implements="forceCommunity:availableForAllPageTypes" to surface the component in community builder -->
+<aura:component controller="NBK_SelfRegisterController" implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="accountId" type="String" required="false" description="accountId for creating the user. If not specified, it will create a PersonAccount if possible for B2C scenario. Or otherwise if it's in a community, the community's self-registration accountId will be used."/>
+    <aura:attribute name="regConfirmUrl" type="String" required="true"/>
+    <aura:attribute name="startUrl" type="String" required="false" description="The url you go to after a successful login" />
+    <aura:attribute name="showError" type="Boolean" required="true" description="" default="false" access="private"/>
+    <aura:attribute name="errorMessage" type="String" required="false" description="" access="private"/>
+    <aura:attribute name="firstnameLabel" type="String" required="false" default="First Name"/>
+    <aura:attribute name="lastnameLabel" type="String" required="false" default="Last Name"/>
+    <aura:attribute name="emailLabel" type="String" required="false" default="Email"/>
+    <aura:attribute name="passwordLabel" type="String" required="false" default="Introduce contraseña"/>
+    <aura:attribute name="confirmPasswordLabel" type="String" required="false" default="Confirma contraseña"/>    
+    <aura:attribute name="submitButtonLabel" type="String" required="false" default="Crear usuario"/>
+    <aura:attribute name="includePasswordField" type="Boolean" required="false" default="false" description="Whether to include password"/>    
+    <aura:attribute name="extraFieldsFieldSet" type="String" required="false" description="A field set name whose fields are desired for user registration"/>
+    <aura:attribute name="extraFields" type="list" required="false" description="A field set name whose fields are desired for user registration"/>
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}"/>
+    <aura:attribute name="expid" type="String" required="false" description="The branding experience ID" />    
+    <aura:attribute name="dniLabel" type="String" required="false" default="Introduce tu DNI"/>
+    <aura:attribute name="screen" type="String" default="1" description="Values: '1','2' o '3'"/>
+    <aura:attribute name="dni" type="String" />
+    <aura:attribute name="password" type="String" />
+    <aura:attribute name="confirmPassword" type="String" />
+    <aura:attribute name="accountName" type="String" />
+    <aura:attribute name="pPrivacidadURL" type="String" />
+    <aura:attribute name="avisoLegal" type="String" />
+    <aura:attribute name="toggleChecked" type="Boolean" default="true" />
+    <aura:attribute name="centralizarChecked" type="Boolean" default="false" />
+    <aura:attribute name="oppositionChecked" type="Boolean" default="false" />
+    <aura:attribute name="buttonDisabled" type="Boolean" default="false" />
+    <aura:attribute name="loginURL" type="String" />
+    <aura:attribute name="showAlreadyRegisteredLabel" type="Boolean" default="true" />
+    
+    <aura:registerevent name="sitePropagatedStartUrl" type="c:setStartUrl"/>
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}"/>
+    <aura:dependency resource="c:setStartUrl" type="EVENT"/>
+    <!-- Please uncomment
+    <aura:dependency resource="siteforce:registerQueryEventMap" type="EVENT"/>
+    -->
+    <aura:handler event="c:setStartUrl" action="{!c.setStartUrl}"/>
+
+    <div>
+        <aura:renderIf isTrue="{!v.showError}">
+                <div id="error" style="color: white; background : red">
+                    <ui:outputRichText value="{!v.errorMessage}"/>
+                </div>
+        </aura:renderIf>
+        <c:logger aura:id="logger"/>
+        <aura:if isTrue="{!v.screen == '1'}">
+            <!-- Screen 1: Pedir DNI -->
+            <div style="color: white">
+                <h2 class="header" style="margin-left: 20px">
+                    {!$Label.c.register_UseYourData}
+                </h2>
+                <br />
+                <div class="sfdc" style="width: 60%; margin: 0 auto; margin-bottom: 10px;">
+                    <h2>{!v.dniLabel}</h2>
+                    <ui:inputText value="{!v.dni}" aura:id="dni" class="input sfdc_usernameinput sfdc"/>
+                </div>
+
+                <br />
+                <div style="width: 60%; margin: 0 auto;">
+                    <ui:outputText value="{!$Label.c.register_AppInstallConsent}" />
+                </div>
+
+                <div style="width: 60%; margin: 0 auto;">
+                    <u><a href="{!v.avisoLegal}" target="_blank">{!$Label.c.register_TermsAndConditions}</a></u>
+                    <br />
+                    <u><a href="{!v.pPrivacidadURL}" target="_blank">{!$Label.c.register_Privacy}</a></u>
+                </div>
+
+                <div class="sfdc" style="width: 60%; margin: 0 auto;">
+                    <ui:button label="Siguiente" press="{!c.handleCheckDnibyAccount}" class="sfdc_button"/>
+                </div>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.screen == '2'}">
+            <!-- Screen 2 -->
+            <div style="color: white">
+                <div>
+                    {!$Label.c.register_CentralizeDataWarning}
+                </div>
+                <br />
+                <div>
+                    <u><a href="{!v.pPrivacidadURL}" target="_blank">{!$Label.c.register_ClickHere}</a></u>&nbsp;{!$Label.c.register_KnowMore}
+                </div>
+                <br />
+                <div>
+                    {!$Label.c.register_ConfirmCentralizeData}
+                </div>
+                <br />
+                <div class="toggleDiv">
+                    <lightning:input
+                      class="toggleButton"
+                      type="toggle"
+                      value="true"
+                      aura:id="toggleButton"
+                      onchange="{!c.handleToggleUnchecked}"
+                      checked="{!v.toggleChecked}"
+                    />
+                </div>
+                <br />
+                <div class="sfdc" style="width: 60%; margin: 0 auto;">
+                    <ui:button label="Siguiente" press="{!c.handleNextToScreen3}" class="sfdc_button"/>
+                </div>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.screen == '3'}">
+            <!-- Screen 3: Pedir contraseña y confirmación -->
+            <div style="font-weight: bold; color: white;">{!$Label.c.welcomeToMyDag}</div><br/>
+            <div style="color: white;">
+                <div> {!$Label.c.register_Hello}&nbsp;{!v.accountName} </div><br/>
+
+                <div> {!$Label.c.usernameLabel}&nbsp;{!v.dni} </div><br/>
+
+                <div>
+                    {!$Label.c.continueWithRegisterProcess}
+                </div>
+                <div class="sfdc" style="width: 60%; margin: 0 auto; margin-top: 20px;">
+                    <ui:button label="Crear contraseña" press="{!c.handleNextToScreen4}" class="sfdc_button"/>
+                </div>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.screen == '4'}">
+            <!-- Screen 4: Mensaje bienvenida -->
+            <div class="sfdc" style="width: 60%; margin: 0 auto; margin-bottom: 10px;">
+                <h2 style="color: white">{!v.passwordLabel}</h2>
+                <ui:inputSecret value="{!v.password}" aura:id="password" class="input sfdc_passwordinput sfdc"/>
+            </div>
+
+            <div class="sfdc" style="width: 60%; margin: 0 auto; margin-bottom: 10px;">
+                <h2 style="color: white">{!v.confirmPasswordLabel}</h2>
+                <ui:inputSecret value="{!v.confirmPassword}" aura:id="confirmPassword" keyup="{!c.onKeyUp}" class="input sfdc_passwordinput sfdc"/>
+            </div>
+
+            <div class="sfdc" style="width: 60%; margin: 0 auto;">
+                <ui:button aura:id="submitButton" label="{!v.submitButtonLabel}" press="{!c.handleSelfRegister}" class="sfdc_button"/>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.screen == '5'}">
+            <!-- Screen 5: Oposicion o centralización de datos -->
+            <div style="color: white">
+                <div>
+                    {!$Label.c.register_RefuseCentralizeData}
+                    <ul>
+                        <li>{!$Label.c.register_UseChatQuestions}</li>
+                        <li>{!$Label.c.register_PersonalData}</li>
+                        <li>{!$Label.c.register_WorkshopData}</li>
+                        <li>{!$Label.c.register_FidelityClub}</li>
+                    </ul>
+                </div>
+                <br />
+                <div>
+                    <label>
+                        <lightning:input
+                            class="inline"
+                            type="radio"
+                            name="optionGroup"
+                            aura:id="centralizarCheck"
+                            checked="{!v.centralizarChecked}"
+                            onchange="{!c.changeCentralizarCheck}"
+                        />
+                        {!$Label.c.register_CentralizeDataConfirmation}
+                    </label>
+                </div>
+                <br />
+                <div>
+                    <label>
+                        <lightning:input
+                            class="inline"
+                            type="radio"
+                            name="optionGroup"
+                            aura:id="oppositionCheck"
+                            checked="{!v.oppositionChecked}"
+                            onchange="{!c.changeOppositionCheck}"
+                        />
+                        {!$Label.c.register_ConfirmPosition}
+                    </label>
+                </div>
+                <br />
+                <aura:if isTrue="{!v.buttonDisabled}">
+                    <div class="sfdc" style="width: 60%; margin: 0 auto;">
+                        <ui:button label="Siguiente" press="{!c.handleNextFromScreen5}" class="sfdc_button"/>
+                    </div>
+                </aura:if>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.screen == '6'}">
+            <!-- Screen 6: Confirmar oposición de datos -->
+            <div style="color: white">
+                <div>
+                    <p>{!$Label.c.register_SorryNotAdvantages}</p>
+                </div>
+                <br />
+                <div>
+                    {!$Label.c.register_HopeSeeYouSoon}
+                    <p>
+                        <u><a href="https://www.domingoalonsogroup.com/es/fichaunicadecliente" target="_blank">{!$Label.c.register_ClickHere}</a></u>&nbsp;{!$Label.c.register_KnowYourRights}
+                    </p>
+                    <div class="sfdc" style="width: 60%; margin: 0 auto; margin-top: 50px;">
+                        <ui:button label="Inicio" press="{!c.handleInicioButton}" class="sfdc_button"/>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.showAlreadyRegisteredLabel}">
+            <div class="sfdc" style="color: white; width: 60%; margin: 0 auto; text-align: center; margin-top: 50px;">
+                <u><a href="{!v.loginURL}">{!$Label.c.alreadyRegisteredButtonLabel}</a></u>
+            </div>
+        </aura:if>
+    </div>
+</aura:component>

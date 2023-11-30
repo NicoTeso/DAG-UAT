@@ -1,0 +1,14 @@
+{
+	"eventType": null,
+	"payload": {
+		"companyCode": "999",
+		"centerCode": "5",
+		"salesType": "Private",
+		"salesmanEmail": "foo@bar.com",
+		"creationDate": "2020-01-01T09:00:00Z",
+		"salesProcessId": "e3003610-1b52-4b0f-89b7-c8d4d96b350d",
+		"customerId": "CA2A078E-FA48-4DE1-AE2E-7D8588C9B7F7",
+		"sourceCode": "1SD",
+		"motiveCode": "2WE"
+	}
+}

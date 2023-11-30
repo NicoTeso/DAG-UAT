@@ -1,0 +1,20 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="generarNumSocioController" access="global" >    
+    <aura:attribute name="checked" type="String" />
+    
+    <div class="slds-align_absolute-center" style="height:5rem" >
+        <ui:button class="vis-boton-gris" label="¡Quiero mi Fidelity Card!" press="{! c.handleClick }" />
+    </div>
+    <!--
+    <div class="slds-align_absolute-center" style="height:5rem" >
+        <lightning:input type="checkbox" label="Acepto comunicaciones comerciales del Club WAH! By DAG" aura:id="PoliticaPriv" value="false" name="input1" />
+    </div>
+    -->
+ <!--
+    <aura:if isTrue ="{!v.checked == true}">
+        <div class="slds-align_absolute-center" style="color:red">
+            <ui:outputText value="Por favor acepte comunicaciones para registrarse"/>
+        </div>
+    </aura:if>
+-->
+    
+</aura:component>
